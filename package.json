@@ -1,0 +1,9 @@
+{
+  "name": "landing-pack-emprendedor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page de alta conversión para el Pack Emprendedor Premium de Nicolás Genesir",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
