@@ -16,7 +16,7 @@
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -48,9 +48,21 @@
             }
           },
           boxShadow: {
-            'glow-purple': '0 10px 25px -4px rgba(124, 58, 237, 0.45)',
-            'glow-purple-lg': '0 20px 35px -5px rgba(124, 58, 237, 0.55)',
+            'glow-purple': '0 10px 28px -4px rgba(124, 58, 237, 0.45)',
+            'glow-purple-lg': '0 20px 40px -6px rgba(124, 58, 237, 0.6)',
+            'glow-amber': '0 10px 25px -4px rgba(245, 158, 11, 0.35)',
             'card-lift': '0 4px 6px -1px rgba(124, 58, 237, 0.04), 0 20px 35px -5px rgba(15, 23, 42, 0.08)',
+            'book-3d': '12px 16px 28px -4px rgba(15, 23, 42, 0.25), 0 2px 4px rgba(0,0,0,0.1)',
+          },
+          animation: {
+            'pulse-subtle': 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 4s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' },
+            }
           }
         }
       }
@@ -66,22 +78,38 @@
     .text-balance {
       text-wrap: balance;
     }
+    /* Hide scrollbar for carousel */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* 3D Book Spine Effect */
+    .book-spine {
+      background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.15) 10%, rgba(255,255,255,0.1) 20%, transparent 100%);
+    }
   </style>
 </head>
 
 <body class="font-sans antialiased bg-surface-light text-slate-900 selection:bg-brand-500 selection:text-white">
 
-  <!-- ================= TOP NOTIFICATION BAR ================= -->
-  <aside aria-label="Alerta de oferta" class="w-full bg-slate-900 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center sticky top-0 z-50 shadow-md">
-    <div class="max-w-5xl mx-auto flex items-center justify-center gap-2">
-      <span class="inline-flex items-center justify-center bg-brand-500 text-white px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-extrabold">
-        COMBO 8 EN 1
+  <!-- ================= TOP URGENCY TICKER ================= -->
+  <aside aria-label="Alerta de oferta" class="w-full bg-slate-950 text-white text-xs font-semibold py-2 px-3 text-center sticky top-0 z-50 border-b border-white/10 shadow-sm">
+    <div class="max-w-5xl mx-auto flex items-center justify-center gap-2 flex-wrap sm:flex-nowrap">
+      <span class="inline-flex items-center justify-center bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-black animate-pulse">
+        ⚡ 39% OFF
       </span>
-      <span class="text-slate-200">Ahorrá <strong>$348.000 ARS</strong> accediendo al Pack Completo hoy</span>
+      <span class="text-slate-200 text-[11px] sm:text-xs">
+        Oferta exclusiva para dueños de negocios físicos: <strong class="text-amber-300">Ahorrás $348.000 ARS</strong> hoy
+      </span>
+      <span class="hidden md:inline text-white/40">•</span>
+      <span class="hidden md:inline text-emerald-400 font-bold text-[11px]">83% de cupos asignados</span>
     </div>
   </aside>
 
-  <!-- ================= HEADER COMPACTO ================= -->
+  <!-- ================= HEADER COMPACTO CON CONVERSIÓN RÁPIDA ================= -->
   <header class="w-full bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-[33px] z-40">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       <!-- Logo -->
@@ -97,95 +125,148 @@
         </div>
       </a>
 
-      <!-- Direct Buy CTA Button -->
-      <a href="#oferta" class="inline-flex items-center justify-center bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-xl shadow-md shadow-brand-600/20 transition-all hover:scale-[1.02] active:scale-[0.98]">
-        Ver Oferta ($59.999)
-      </a>
+      <!-- Quick CTA Button -->
+      <div class="flex items-center gap-2">
+        <span class="hidden sm:inline-flex text-[11px] font-bold text-slate-400 line-through">$97.999</span>
+        <a href="#oferta" class="inline-flex items-center justify-center bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-4 py-2 rounded-xl shadow-md shadow-brand-600/20 transition-all hover:scale-[1.02] active:scale-[0.98]">
+          <span>Comprar ($59.999)</span>
+        </a>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- ================= HERO SECTION (DIRECTO, VISCERAL, PALABRAS CLAVE) ================= -->
-    <section class="relative pt-6 sm:pt-12 pb-10 sm:pb-14 px-4 sm:px-6 overflow-hidden">
-      <!-- Glow ambient background -->
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <!-- ================= HERO SECTION (VISUAL, DIRECTO, VISCERAL) ================= -->
+    <section class="relative pt-6 sm:pt-10 pb-10 sm:pb-14 px-4 sm:px-6 overflow-hidden">
+      <!-- Ambient Glow -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[650px] h-[320px] bg-brand-200/50 rounded-full blur-3xl pointer-events-none -z-10"></div>
       
       <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
         
-        <!-- Pill Audience Badge -->
-        <div class="inline-flex items-center gap-1.5 bg-brand-100 text-brand-900 px-3 py-1 rounded-full text-xs font-extrabold mb-4 border border-brand-200/80 shadow-sm">
-          <span>📍</span>
-          <span>PARA DUEÑOS DE NEGOCIOS FÍSICOS, LOCALES Y SERVICIOS</span>
+        <!-- Target Pill Badge -->
+        <div class="inline-flex items-center gap-1.5 bg-brand-100 text-brand-900 px-3.5 py-1 rounded-full text-xs font-extrabold mb-4 border border-brand-200/80 shadow-sm">
+          <span>🏪</span>
+          <span>HECHO POR DUEÑOS DE LOCALES PARA DUEÑOS DE LOCALES</span>
         </div>
 
-        <!-- Main Direct-Response Headline -->
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] text-balance">
+        <!-- Main Headline Direct-Response -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12] text-balance">
           Un negocio que no funciona sin vos no es un negocio: <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-800 underline decoration-brand-400 decoration-wavy decoration-2">es un empleo carísimo</span>.
         </h1>
 
-        <!-- Subheadline con palabras clave en negrita y etiquetas visuales -->
-        <p class="text-base sm:text-lg text-slate-600 font-normal mt-4 mb-6 max-w-2xl leading-snug text-balance">
-          Dejá de ser el bombero de tu propio mostrador. El kit práctico con <strong>8 productos tácticos</strong> para ordenar a tu <strong>equipo</strong>, blindar tus <strong>márgenes</strong> y sistematizar tus <strong>procesos</strong> sin quemarte en el día a día.
+        <!-- Subheadline Táctico -->
+        <p class="text-base sm:text-lg text-slate-600 font-medium mt-4 mb-5 max-w-2xl leading-snug text-balance">
+          Dejá de ser el bombero de tu propio mostrador. El ecosistema con <strong>8 productos tácticos</strong> para ordenar tu <strong>equipo</strong>, blindar tus <strong>márgenes</strong> y sistematizar tus <strong>procesos</strong> sin quemarte todos los días.
         </p>
 
-        <!-- Category Tags Chips -->
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
-          <span class="bg-white border border-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm">✓ Liderazgo de Equipo</span>
-          <span class="bg-white border border-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm">✓ Control de Margen</span>
-          <span class="bg-white border border-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm">✓ Procesos & SOPs</span>
-          <span class="bg-white border border-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm">✓ Ventas & Clientes</span>
+        <!-- Fast Scan Pill Highlights -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-7">
+          <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Liderazgo de Equipo</span>
+          <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Control de Margen</span>
+          <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Procesos & SOPs</span>
+          <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Ventas & Clientes</span>
         </div>
 
-        <!-- CTA Box & Pricing Trigger -->
-        <div class="w-full max-w-md flex flex-col items-center gap-2.5">
-          <a href="#oferta" class="w-full py-4 px-6 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-extrabold text-base sm:text-lg rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 group">
-            <span>Obtener el Pack Completo — $59.999 ARS</span>
+        <!-- ================= BUNDLE VISUAL SHOWCASE (3D MOCKUP CLUSTER) ================= -->
+        <div class="w-full max-w-md my-2 p-4 bg-white/90 backdrop-blur-md rounded-3xl border border-brand-200/80 shadow-card-lift flex flex-col items-center relative overflow-hidden">
+          <!-- Ribbon Superior -->
+          <div class="w-full flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
+            <span class="font-extrabold text-slate-900 flex items-center gap-1">
+              <span class="text-amber-500">🎁</span> MEGA BUNDLE 8 EN 1
+            </span>
+            <span class="text-emerald-700 font-extrabold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+              AHORRÁS 39%
+            </span>
+          </div>
+
+          <!-- Mini 3D Assets Row -->
+          <div class="grid grid-cols-4 gap-2 w-full my-3">
+            <!-- Book 1 -->
+            <div class="bg-gradient-to-b from-brand-700 to-brand-900 text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-brand-300 relative text-left">
+              <span class="text-[8px] font-black uppercase text-brand-300">EBOOK</span>
+              <span class="text-[10px] font-extrabold leading-tight mt-2">6 Mandatos</span>
+              <span class="text-[8px] text-white/70 mt-1">PDF</span>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="bg-gradient-to-b from-slate-900 to-black text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-red-400 relative text-left">
+              <span class="text-[8px] font-black uppercase text-red-400">EBOOK</span>
+              <span class="text-[10px] font-extrabold leading-tight mt-2">Precio de Liderar</span>
+              <span class="text-[8px] text-white/70 mt-1">PDF</span>
+            </div>
+
+            <!-- Masterclass -->
+            <div class="bg-gradient-to-b from-amber-600 to-amber-800 text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-amber-300 relative text-left">
+              <span class="text-[8px] font-black uppercase text-amber-200">CLASE</span>
+              <span class="text-[10px] font-extrabold leading-tight mt-2">Negocios Físicos</span>
+              <span class="text-[8px] text-white/70 mt-1">+2 Horas</span>
+            </div>
+
+            <!-- Tools & Bonuses -->
+            <div class="bg-gradient-to-b from-emerald-700 to-emerald-900 text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-emerald-300 relative text-left">
+              <span class="text-[8px] font-black uppercase text-emerald-300">KITS</span>
+              <span class="text-[10px] font-extrabold leading-tight mt-2">SOPs & Bonos</span>
+              <span class="text-[8px] text-white/70 mt-1">Plantillas</span>
+            </div>
+          </div>
+
+          <!-- Total Value Contrast -->
+          <div class="w-full bg-slate-50 rounded-xl p-2.5 flex items-center justify-between text-xs mt-1">
+            <span class="text-slate-500 font-medium">Valor real por separado:</span>
+            <span class="text-red-500 font-extrabold line-through text-sm">$408.998 ARS</span>
+          </div>
+        </div>
+
+        <!-- Main Conversion Action Button -->
+        <div class="w-full max-w-md flex flex-col items-center gap-2.5 mt-4">
+          <a href="#oferta" class="w-full py-4 px-6 bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-black text-base sm:text-lg rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 group">
+            <span>Quiero el Pack Completo — $59.999 ARS</span>
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>
 
-          <!-- Trust microcopy sin garantía de devolución -->
-          <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-slate-500 font-medium">
+          <!-- Trust microcopy directo sin garantía -->
+          <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-slate-500 font-medium pt-1">
             <span class="inline-flex items-center gap-1 text-emerald-700 font-bold">
               <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              Acceso Inmediato
+              Entrega Instantánea al Mail
             </span>
             <span>•</span>
             <span>Descarga Vitalicia</span>
             <span>•</span>
-            <span>Compra 100% Protegida</span>
+            <span>Pago Seguro (Pesos o USD)</span>
           </div>
         </div>
 
-        <!-- Compact Social Proof / Numbers Bar -->
+        <!-- 3 Pillars Stat Cards -->
         <div class="mt-8 grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-lg text-center">
-          <div class="bg-white p-3 rounded-xl border border-slate-200/70 shadow-sm">
-            <div class="text-xl sm:text-2xl font-extrabold text-brand-600">+50</div>
-            <div class="text-[11px] font-bold text-slate-600">Empresas Asesoradas</div>
+          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div class="text-xl sm:text-2xl font-black text-brand-600">+50</div>
+            <div class="text-[11px] font-bold text-slate-700">Empresas Asesoradas</div>
           </div>
-          <div class="bg-white p-3 rounded-xl border border-slate-200/70 shadow-sm">
-            <div class="text-xl sm:text-2xl font-extrabold text-brand-600">4</div>
-            <div class="text-[11px] font-bold text-slate-600">Negocios Propios</div>
+          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div class="text-xl sm:text-2xl font-black text-brand-600">4</div>
+            <div class="text-[11px] font-bold text-slate-700">Negocios Propios</div>
           </div>
-          <div class="bg-white p-3 rounded-xl border border-slate-200/70 shadow-sm">
-            <div class="text-xl sm:text-2xl font-extrabold text-brand-600">8 en 1</div>
-            <div class="text-[11px] font-bold text-slate-600">Herramientas Listas</div>
+          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div class="text-xl sm:text-2xl font-black text-emerald-600">8 en 1</div>
+            <div class="text-[11px] font-bold text-slate-700">Herramientas Listas</div>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ================= ANTES VS DESPUÉS (LECTURA RÁPIDA DE 5 SEGUNDOS) ================= -->
+    <!-- ================= ANTES VS DESPUÉS (DOLOR DIRECTO) ================= -->
     <section class="py-8 sm:py-14 px-4 sm:px-6 bg-slate-50/80 border-y border-slate-200/60">
       <div class="max-w-4xl mx-auto">
         <div class="text-center max-w-xl mx-auto mb-6 sm:mb-8">
-          <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            ¿En qué lado decidís estar hoy?
+          <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            ¿En qué lado estás pasando tus días?
           </h2>
           <p class="text-xs sm:text-sm text-slate-600 mt-1">
-            No es cuánto te esforzás, es el sistema con el que operás.
+            No es cuánto te esforzás, es si tenés procesos o si todo depende de tu cabeza.
           </p>
         </div>
 
@@ -193,52 +274,52 @@
           
           <!-- Sin el Pack -->
           <div class="bg-white p-5 sm:p-6 rounded-2xl border border-red-200 shadow-sm">
-            <div class="flex items-center gap-2 mb-4 text-red-600 font-extrabold text-sm uppercase">
+            <div class="flex items-center gap-2 mb-3 text-red-600 font-black text-sm uppercase">
               <span class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center font-black">✕</span>
-              <span>El Dueño Atrapado (Sin Sistemas)</span>
+              <span>El Dueño Esclavo del Mostrador</span>
             </div>
             <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
               <li class="flex items-start gap-2">
                 <span class="text-red-500 font-bold shrink-0">✕</span>
-                <span><strong>14 horas apagando incendios:</strong> Llegás a tu casa agotado y sin margen neto en el bolsillo.</span>
+                <span><strong>14 horas apagando incendios:</strong> Llegás a tu casa cansado y a fin de mes no queda margen real.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-red-500 font-bold shrink-0">✕</span>
-                <span><strong>Pánico si no estás presente:</strong> Si faltás un fin de semana, el negocio no funciona o pierde clientes.</span>
+                <span><strong>Pánico si no estás presente:</strong> Si te tomás un fin de semana, el negocio no camina o hay quejas.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-red-500 font-bold shrink-0">✕</span>
-                <span><strong>Contratar por desesperación:</strong> Metés a cualquiera, no rinde y terminás haciendo vos el trabajo con bronca.</span>
+                <span><strong>Contratar por apuro:</strong> Metés a cualquiera por desesperación y terminás haciendo vos la tarea con bronca.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-red-500 font-bold shrink-0">✕</span>
-                <span><strong>Precios al tanteo:</strong> Vendés sin conocer tu verdadero punto de equilibrio ni tus costos ocultos.</span>
+                <span><strong>Precios al tanteo:</strong> Vendés sin conocer tu punto de equilibrio ni tus costos ocultos reales.</span>
               </li>
             </ul>
           </div>
 
           <!-- Con el Pack -->
-          <div class="bg-gradient-to-b from-brand-50/60 to-white p-5 sm:p-6 rounded-2xl border-2 border-brand-500 shadow-md">
-            <div class="flex items-center gap-2 mb-4 text-brand-800 font-extrabold text-sm uppercase">
+          <div class="bg-gradient-to-b from-brand-50/70 to-white p-5 sm:p-6 rounded-2xl border-2 border-brand-500 shadow-md">
+            <div class="flex items-center gap-2 mb-3 text-brand-800 font-black text-sm uppercase">
               <span class="w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center font-black">✓</span>
               <span>El Dueño con el Pack Emprendedor</span>
             </div>
             <ul class="space-y-3 text-xs sm:text-sm text-slate-800 font-medium">
               <li class="flex items-start gap-2">
                 <span class="text-emerald-600 font-bold shrink-0">✓</span>
-                <span><strong>Procesos claros (SOPs):</strong> Tu equipo sabe qué hacer y cómo resolver sin preguntarte todo.</span>
+                <span><strong>Procesos claros (SOPs):</strong> Tu equipo sabe qué hacer y cómo resolver sin preguntarte cada detalle.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-emerald-600 font-bold shrink-0">✓</span>
-                <span><strong>Liderazgo firme y sin culpa:</strong> Aprendés a dar feedback que sirve y a despedir a tiempo sin dudar.</span>
+                <span><strong>Liderazgo firme:</strong> Aprendés a dar feedback que sirve, fijar estándares y despedir a tiempo sin culpa.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-emerald-600 font-bold shrink-0">✓</span>
-                <span><strong>Filtros de contratación:</strong> Sumás colaboradores comprometidos y bajás la rotación del personal.</span>
+                <span><strong>Filtros de contratación:</strong> Sumás gente con ganas de trabajar y disminuís la rotación de empleados.</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-emerald-600 font-bold shrink-0">✓</span>
-                <span><strong>Margen y tranquilidad:</strong> Sabés exactamente cuánto ganás por producto y recuperás tu tiempo libre.</span>
+                <span><strong>Margen y libertad:</strong> Sabés exactamente cuánto ganás y el negocio trabaja para darte tranquilidad.</span>
               </li>
             </ul>
           </div>
@@ -285,31 +366,29 @@
       </div>
     </section>
 
-    <!-- ================= EL VALUE STACK (VALOR DESPROPORCIONADO) ================= -->
+    <!-- ================= VALUE STACK (VALOR DESPROPORCIONADO) ================= -->
     <section class="py-10 sm:py-16 px-4 sm:px-6 bg-slate-50/70 border-t border-slate-200/60" id="contenido">
       <div class="max-w-5xl mx-auto">
         
-        <!-- Header Value Stack -->
         <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <div class="inline-flex items-center gap-1.5 bg-red-100 text-red-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase mb-2">
-            🔥 VALOR TOTAL ACUMULADO: $408.998 ARS
+          <div class="inline-flex items-center gap-1.5 bg-red-100 text-red-700 text-xs font-black px-3.5 py-1 rounded-full uppercase mb-2">
+            🔥 VALOR ACUMULADO: $408.998 ARS
           </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Los 8 Productos que te llevás en el Pack
+          <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Los 8 Productos que te llevás en el Combo
           </h2>
           <p class="text-xs sm:text-sm text-slate-600 mt-1">
-            Cada herramienta resuelve un dolor exacto. Todo listo para descargar e implementar hoy mismo.
+            Cada recurso resuelve un dolor exacto de tu negocio. Todo listo para descargar hoy.
           </p>
         </div>
 
-        <!-- 8 Compact & Punchy Product Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           <!-- 1. Ebook Los 6 Mandatos -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-50 text-brand-700 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                <span class="bg-brand-50 text-brand-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
                   📘 EBOOK EN PDF
                 </span>
                 <span class="text-xs text-slate-400 font-bold line-through">$35.000</span>
@@ -318,20 +397,20 @@
                 Los 6 Mandatos del Emprendedor
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Los principios inquebrantables para crear un negocio rentable que no dependa de modas. Cómo <strong>fijar precios</strong>, retener clientes y evitar los errores que quiebran locales.
+                Las leyes inquebrantables para crear un negocio rentable que no dependa de modas. Cómo <strong>fijar precios</strong>, retener clientes y blindar tu margen.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Lectura ágil sin relleno</span>
+              <span class="text-slate-500 font-medium">Lectura directa sin relleno</span>
               <span class="text-emerald-700 font-bold">✓ Incluido</span>
             </div>
           </div>
 
           <!-- 2. Ebook El Precio de Liderar -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-50 text-brand-700 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                <span class="bg-brand-50 text-brand-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
                   📕 EBOOK EN PDF
                 </span>
                 <span class="text-xs text-slate-400 font-bold line-through">$37.999</span>
@@ -340,7 +419,7 @@
                 El Precio de Liderar: 10 Verdades Incómodas
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                ¿Quién dirige tu equipo cuando no estás mirando? Cómo dar <strong>feedback que sirva</strong>, sostener estándares altos, <strong>despedir a tiempo</strong> y dejar de ser el techo de tu negocio.
+                ¿Quién dirige tu equipo cuando no estás mirando? Cómo dar <strong>feedback que sirva</strong>, sostener estándares y <strong>despedir a tiempo</strong> sin culpa.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
@@ -350,10 +429,10 @@
           </div>
 
           <!-- 3. Masterclass Negocios Físicos -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-amber-50 text-amber-800 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                <span class="bg-amber-50 text-amber-800 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
                   🎥 VIDEO MASTERCLASS (+2 HORAS)
                 </span>
                 <span class="text-xs text-slate-400 font-bold line-through">$55.000</span>
@@ -362,7 +441,7 @@
                 Estrategia & Operación de Negocios Físicos
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Trinchera pura: <strong>costos de apertura</strong>, rotación de mercadería, <strong>punto de equilibrio</strong> del local, control de caja y atención en el mostrador para ganar margen real.
+                Trinchera pura: <strong>costos de apertura</strong>, rotación de stock, <strong>punto de equilibrio</strong> del local, control de caja y atención en el mostrador.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
@@ -372,10 +451,10 @@
           </div>
 
           <!-- 4. Curso Marca Personal -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-50 text-brand-700 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                <span class="bg-brand-50 text-brand-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
                   🎙️ CURSO EN VIDEO
                 </span>
                 <span class="text-xs text-slate-400 font-bold line-through">$45.000</span>
@@ -384,7 +463,7 @@
                 Marca Personal con Nicolás Genesir
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Cómo el dueño se convierte en el <strong>mayor imán de ventas</strong>. Posicionate como referente de confianza en tu ciudad o rubro para que los clientes te elijan sin regatear precio.
+                Cómo el dueño se convierte en el <strong>mayor imán de ventas</strong>. Posicionate como referente de confianza en tu ciudad para que no te regateen precio.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
@@ -394,11 +473,11 @@
           </div>
 
           <!-- 5. Checklist Salud del Negocio -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-slate-100 text-slate-800 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
-                  🚩 HERRAMIENTA DE AUDITORÍA
+                <span class="bg-slate-100 text-slate-800 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
+                  🚩 AUDITORÍA DE 15 MIN
                 </span>
                 <span class="text-xs text-slate-400 font-bold line-through">$25.000</span>
               </div>
@@ -406,20 +485,20 @@
                 Checklist de Salud del Negocio
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Auditoría rápida de 15 minutos para detectar <strong>fugas de dinero</strong>, fallas operativas y cuellos de botella antes de que se conviertan en pérdidas irreparables.
+                Auditoría rápida para detectar <strong>fugas de dinero</strong>, fallas operativas y mermas antes de que se conviertan en pérdidas irreparables.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Planilla lista para usar</span>
+              <span class="text-slate-500 font-medium">Planilla lista para imprimir/usar</span>
               <span class="text-emerald-700 font-bold">✓ Incluido</span>
             </div>
           </div>
 
           <!-- 6. Herramienta Cliente Ideal -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-300 transition-all">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-slate-100 text-slate-800 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                <span class="bg-slate-100 text-slate-800 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
                   💸 MATRIZ COMERCIAL
                 </span>
                 <span class="text-xs text-slate-400 font-bold line-through">$22.000</span>
@@ -428,7 +507,7 @@
                 Herramienta de Cliente Ideal
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Dejá de quemar plata en publicidad ciega. Definí con exactitud al <strong>comprador de alto valor</strong> y filtrá al cliente problemático que solo busca rebajas.
+                Dejá de quemar plata en publicidad ciega. Definí con exactitud al <strong>comprador de alto valor</strong> y filtrá al cliente que solo pide descuentos.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
@@ -441,7 +520,7 @@
           <div class="bg-gradient-to-br from-brand-50 to-white p-5 rounded-2xl border-2 border-brand-300 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-600 text-white text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                <span class="bg-brand-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
                   🎁 BONO EXCLUSIVO #1
                 </span>
                 <span class="text-xs text-red-500 font-bold line-through">$99.000</span>
@@ -450,11 +529,11 @@
                 Herramienta de Creación de Procesos (SOPs)
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Generador paso a paso para documentar tareas en 15 minutos: apertura, atención, cobro y cierre para que tu <strong>equipo opere solo</strong>.
+                Generador para documentar tareas en 15 minutos: apertura, atención, cobro y cierre para que tu <strong>equipo opere sin depender de vos</strong>.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-brand-100 flex items-center justify-between text-[11px]">
-              <span class="text-brand-700 font-extrabold">¡100% GRATIS EN EL COMBO!</span>
+              <span class="text-brand-700 font-black">¡100% GRATIS EN EL COMBO!</span>
               <span class="text-emerald-700 font-bold">✓ Incluido</span>
             </div>
           </div>
@@ -463,7 +542,7 @@
           <div class="bg-gradient-to-br from-brand-50 to-white p-5 rounded-2xl border-2 border-brand-300 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-600 text-white text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                <span class="bg-brand-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
                   🎁 BONO EXCLUSIVO #2
                 </span>
                 <span class="text-xs text-red-500 font-bold line-through">$89.999</span>
@@ -472,11 +551,11 @@
                 Kit de Contratación & Entrevistas
               </h3>
               <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Preguntas filtro, perfiles de puesto listos para publicar y método de prueba de 7 días para <strong>incorporar colaboradores que rindan</strong>.
+                Preguntas filtro, perfiles de puesto listos para publicar y método de prueba de 7 días para <strong>sumar colaboradores con ganas</strong>.
               </p>
             </div>
             <div class="mt-3 pt-2 border-t border-brand-100 flex items-center justify-between text-[11px]">
-              <span class="text-brand-700 font-extrabold">¡100% GRATIS EN EL COMBO!</span>
+              <span class="text-brand-700 font-black">¡100% GRATIS EN EL COMBO!</span>
               <span class="text-emerald-700 font-bold">✓ Incluido</span>
             </div>
           </div>
@@ -486,23 +565,144 @@
       </div>
     </section>
 
-    <!-- ================= CAJA DE PRECIO Y CIERRE (DISPARADOR DE COMPRA) ================= -->
-    <section class="py-12 sm:py-20 px-4 sm:px-6 bg-white relative" id="oferta">
+    <!-- ================= PRUEBA SOCIAL INTERACTIVA (CARRUSEL SWIPE / TOUCH) ================= -->
+    <section class="py-12 sm:py-16 px-4 sm:px-6 bg-white overflow-hidden" id="testimonios">
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="text-xs font-black uppercase tracking-wider text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
+            Casos de Negocios Reales
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 tracking-tight">
+            Dueños que ya ordenaron su operación
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            Gente con locales, empleados y comercios tradicionales que aplicó el sistema.
+          </p>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="relative">
+          
+          <!-- Slides Wrapper -->
+          <div id="carousel-track" class="flex transition-transform duration-300 ease-out cursor-grab select-none">
+            
+            <!-- Slide 1 -->
+            <div class="w-full shrink-0 px-2 sm:px-4">
+              <div class="bg-surface-light border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-amber-400 mb-3">
+                    <span>★★★★★</span>
+                    <span class="text-xs font-bold text-slate-400 ml-1">5.0</span>
+                  </div>
+                  <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed italic">
+                    "Estaba 14 horas adentro del local entre proveedores, pedidos y la caja. La Masterclass de negocios físicos y las plantillas de SOPs me abrieron los ojos: armé los manuales de apertura y cierre en 3 días. El mes pasado me tomé 4 días seguidos y el negocio facturó impecable sin mí."
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200/80 flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-black flex items-center justify-center text-sm shadow-sm">
+                    MR
+                  </div>
+                  <div class="flex flex-col text-left">
+                    <span class="font-extrabold text-sm text-slate-900">Martín Rossi</span>
+                    <span class="text-xs text-slate-500">Dueño de Hamburguesería & Bar (Córdoba)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="w-full shrink-0 px-2 sm:px-4">
+              <div class="bg-surface-light border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-amber-400 mb-3">
+                    <span>★★★★★</span>
+                    <span class="text-xs font-bold text-slate-400 ml-1">5.0</span>
+                  </div>
+                  <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed italic">
+                    "El libro 'El Precio de Liderar' me dolió leerlo pero fue lo más sincero que encontré. Tenía una empleada tóxica que me pudría el ambiente y no me animaba a despedirla por miedo a no conseguir a nadie. El kit de contratación me dio el método para filtrar bien y hoy tengo un equipo que cuida el salón."
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200/80 flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-slate-900 text-white font-black flex items-center justify-center text-sm shadow-sm">
+                    VM
+                  </div>
+                  <div class="flex flex-col text-left">
+                    <span class="font-extrabold text-sm text-slate-900">Valeria Méndez</span>
+                    <span class="text-xs text-slate-500">Dueña de Centro de Estética & Uñas (Rosario)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="w-full shrink-0 px-2 sm:px-4">
+              <div class="bg-surface-light border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between h-full">
+                <div>
+                  <div class="flex items-center gap-1 text-amber-400 mb-3">
+                    <span>★★★★★</span>
+                    <span class="text-xs font-bold text-slate-400 ml-1">5.0</span>
+                  </div>
+                  <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed italic">
+                    "Apliqué el Checklist de Salud y me saltaron 3 fugas de costos fijos que no estaba computando en el precio de los repuestos. Recuperé el valor del pack en los primeros dos días simplemente corrigiendo la lista de precios."
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200/80 flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-brand-700 text-white font-black flex items-center justify-center text-sm shadow-sm">
+                    JP
+                  </div>
+                  <div class="flex flex-col text-left">
+                    <span class="font-extrabold text-sm text-slate-900">Julián Peralta</span>
+                    <span class="text-xs text-slate-500">Distribuidora & Taller de Repuestos (Bs. As.)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="flex items-center justify-between mt-6 px-2">
+            <!-- Dots -->
+            <div class="flex items-center gap-2" id="carousel-dots">
+              <button class="w-7 h-2 rounded-full bg-brand-600 transition-all dot-btn" aria-label="Slide 1"></button>
+              <button class="w-2 h-2 rounded-full bg-slate-300 transition-all dot-btn" aria-label="Slide 2"></button>
+              <button class="w-2 h-2 rounded-full bg-slate-300 transition-all dot-btn" aria-label="Slide 3"></button>
+            </div>
+
+            <!-- Arrows -->
+            <div class="flex items-center gap-2">
+              <button id="prev-btn" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center shadow-sm active:scale-95 transition-transform" aria-label="Anterior">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button id="next-btn" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center shadow-sm active:scale-95 transition-transform" aria-label="Siguiente">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CAJA DE OFERTA Y CIERRE QUIRÚRGICO ================= -->
+    <section class="py-12 sm:py-20 px-4 sm:px-6 bg-slate-50/80 relative" id="oferta">
       <div class="max-w-lg mx-auto">
         
         <!-- Decision Card Container -->
-        <div class="bg-white rounded-3xl border-2 border-brand-600 shadow-card-lift p-6 sm:p-8 relative">
+        <div class="bg-white rounded-3xl border-2 border-brand-600 shadow-card-lift p-6 sm:p-8 relative overflow-hidden">
           
-          <!-- Urgent Badge -->
+          <!-- Top Urgency Ribbon -->
           <div class="flex justify-center mb-4">
-            <span class="bg-red-600 text-white text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-              ⚡ OFERTA PACK COMPLETO • 39% OFF
+            <span class="bg-red-600 text-white text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm animate-pulse-subtle">
+              ⚡ OFERTA LANZAMIENTO • 39% OFF
             </span>
           </div>
 
-          <!-- Title -->
+          <!-- Product Title -->
           <div class="text-center mb-5">
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               PACK EMPRENDEDOR PREMIUM
             </h3>
             <p class="text-xs text-slate-600 mt-0.5 font-medium">
@@ -510,7 +710,7 @@
             </p>
           </div>
 
-          <!-- Anchor Price Display -->
+          <!-- Price Anchor Display -->
           <div class="bg-brand-50/60 border border-brand-200/80 rounded-2xl p-4 sm:p-5 mb-6 text-center">
             <div class="text-[11px] uppercase font-bold text-slate-500">
               Valor por separado: <span class="line-through text-red-500 font-extrabold text-sm">$408.998 ARS</span>
@@ -519,7 +719,7 @@
             <div class="flex items-center justify-center gap-2 my-1.5">
               <span class="text-2xl font-extrabold text-slate-400 line-through">$97.999</span>
               <span class="text-4xl sm:text-5xl font-black text-brand-600 tracking-tight">$59.999</span>
-              <span class="text-xs font-extrabold text-slate-600">ARS</span>
+              <span class="text-xs font-black text-slate-600">ARS</span>
             </div>
             
             <div class="text-xs font-bold text-slate-700">
@@ -530,7 +730,7 @@
             </div>
           </div>
 
-          <!-- Checklist de Cierre Ultra Conciso -->
+          <!-- Checklist de Cierre Rápido -->
           <div class="space-y-2.5 mb-6 text-xs sm:text-sm text-slate-700 font-medium">
             <div class="flex items-center gap-2">
               <span class="text-emerald-600 font-bold shrink-0">✓</span>
@@ -568,24 +768,24 @@
 
           <!-- Dual Buy Buttons -->
           <div class="flex flex-col gap-2.5">
-            <!-- Botón Pesos -->
-            <a href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-5 bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-base sm:text-lg rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
+            <!-- Botón Pesos (Mercado Pago) -->
+            <a href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-5 bg-brand-600 hover:bg-brand-700 text-white font-black text-base sm:text-lg rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
               <span>Comprar en Pesos — $59.999 ARS</span>
-              <span class="text-[11px] font-normal text-brand-100 mt-0.5">Mercado Pago • Tarjetas • Rapipago / Pago Fácil</span>
+              <span class="text-[11px] font-normal text-brand-100 mt-0.5">Mercado Pago • Tarjetas de Crédito/Débito • Pago Fácil / Rapipago</span>
             </a>
 
-            <!-- Botón USD -->
+            <!-- Botón USD (PayPal) -->
             <a href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=USD" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-5 bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200 font-bold text-sm rounded-xl transition-all flex flex-col items-center justify-center leading-tight text-center">
               <span>Comprar en Dólares — U$S 59</span>
-              <span class="text-[10px] text-slate-500 mt-0.5">PayPal • Tarjetas Internacionales</span>
+              <span class="text-[10px] text-slate-500 mt-0.5">PayPal • Tarjetas Internacionales (Visa, Mastercard, Amex)</span>
             </a>
           </div>
 
-          <!-- Trust Triggers (Sin garantía de 7 días) -->
+          <!-- Trust Triggers -->
           <div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs text-slate-500">
             <span class="inline-flex items-center gap-1 font-semibold text-slate-700">
               <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              Entrega Inmediata
+              Entrega Instantánea al Mail
             </span>
             <span>•</span>
             <span class="inline-flex items-center gap-1 font-semibold text-slate-700">
@@ -595,7 +795,7 @@
             <span>•</span>
             <span class="inline-flex items-center gap-1 font-semibold text-slate-700">
               <svg class="w-3.5 h-3.5 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
-              Soporte de Descarga
+              Soporte de Acceso
             </span>
           </div>
 
@@ -604,20 +804,20 @@
       </div>
     </section>
 
-    <!-- ================= SEGURIDAD Y CONFIANZA TOTAL ================= -->
-    <section class="py-8 sm:py-12 px-4 sm:px-6 bg-surface-light">
+    <!-- ================= SEGURIDAD Y CONFIANZA ================= -->
+    <section class="py-8 sm:py-12 px-4 sm:px-6 bg-white">
       <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-surface-light p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="text-2xl mb-1">⚡</div>
           <div class="font-extrabold text-xs sm:text-sm text-slate-900">Descarga Directa</div>
           <div class="text-[11px] text-slate-500 mt-0.5">Pagás y en 2 minutos ya tenés todos los archivos en tu mail.</div>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-surface-light p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="text-2xl mb-1">🔒</div>
           <div class="font-extrabold text-xs sm:text-sm text-slate-900">Compra Blindada</div>
-          <div class="text-[11px] text-slate-500 mt-0.5">Operación protegida con pasarelas oficiales de Mercado Pago y PayPal.</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Operación encriptada con pasarelas oficiales de Mercado Pago y PayPal.</div>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-surface-light p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="text-2xl mb-1">💾</div>
           <div class="font-extrabold text-xs sm:text-sm text-slate-900">Tuyo Para Siempre</div>
           <div class="text-[11px] text-slate-500 mt-0.5">Guardás el material en tu compu o celular y lo consultás de por vida.</div>
@@ -629,7 +829,7 @@
     <section class="py-10 sm:py-16 px-4 sm:px-6 bg-slate-50/80 border-t border-slate-200/60" id="faq">
       <div class="max-w-2xl mx-auto">
         <div class="text-center mb-6">
-          <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight">
             Preguntas Frecuentes
           </h2>
           <p class="text-xs sm:text-sm text-slate-600 mt-1">
@@ -691,13 +891,13 @@
     <!-- ================= CIERRE RÁPIDO ================= -->
     <section class="py-10 sm:py-14 px-4 sm:px-6 bg-white text-center">
       <div class="max-w-2xl mx-auto flex flex-col items-center">
-        <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight">
           Ordená tu negocio y recuperá tu tiempo hoy
         </h2>
         <p class="text-xs sm:text-sm text-slate-600 mt-2 mb-6 max-w-md">
           Aprovechá los 8 productos del combo con 39% de descuento antes de que se agote la promoción de lanzamiento.
         </p>
-        <a href="#oferta" class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-base rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
+        <a href="#oferta" class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-black text-base rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
           <span>Acceder al Pack Emprendedor — $59.999 ARS</span>
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
@@ -714,7 +914,7 @@
         <span class="text-[11px] text-slate-400 line-through leading-none">$97.999</span>
       </div>
     </div>
-    <a href="#oferta" class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md shadow-brand-600/30 flex items-center gap-1">
+    <a href="#oferta" class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-black px-4 py-2.5 rounded-xl shadow-md shadow-brand-600/30 flex items-center gap-1">
       <span>Comprar</span>
       <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
     </a>
@@ -737,9 +937,9 @@
     </div>
   </footer>
 
-  <!-- ================= SCRIPTS ================= -->
+  <!-- ================= SCRIPTS DE INTERACCIÓN & CARRUSEL ================= -->
   <script>
-    // FAQ Toggle
+    // 1. FAQ Acordeón
     document.querySelectorAll('.faq-item').forEach(item => {
       const btn = item.querySelector('.faq-btn');
       const answer = item.querySelector('.faq-answer');
@@ -758,7 +958,7 @@
       });
     });
 
-    // Mobile Sticky CTA Bar
+    // 2. Mobile Sticky CTA Bar (trigger at 350px scroll)
     const stickyBar = document.getElementById('sticky-bar');
     if (stickyBar) {
       window.addEventListener('scroll', () => {
@@ -769,6 +969,89 @@
         }
       }, { passive: true });
     }
+
+    // 3. Carousel Interactivo (Touch Swipe + Arrows + Dots + Autoplay)
+    const track = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const dots = document.querySelectorAll('.dot-btn');
+    const totalSlides = 3;
+    let currentIndex = 0;
+    let startX = 0;
+    let isDragging = false;
+    let autoplayTimer = null;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('w-7', 'bg-brand-600');
+          dot.classList.remove('w-2', 'bg-slate-300');
+        } else {
+          dot.classList.remove('w-7', 'bg-brand-600');
+          dot.classList.add('w-2', 'bg-slate-300');
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetAutoplay();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetAutoplay();
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        currentIndex = idx;
+        updateCarousel();
+        resetAutoplay();
+      });
+    });
+
+    // Touch & Drag events
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      if (diffX > 40) {
+        nextSlide();
+        resetAutoplay();
+      } else if (diffX < -40) {
+        prevSlide();
+        resetAutoplay();
+      }
+    });
+
+    function startAutoplay() {
+      autoplayTimer = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoplay() {
+      clearInterval(autoplayTimer);
+      startAutoplay();
+    }
+
+    startAutoplay();
   </script>
 
 </body>
