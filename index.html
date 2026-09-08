@@ -45,24 +45,22 @@
               light: '#faf8ff',
               card: '#ffffff',
               muted: '#f8fafc',
+            },
+            whatsapp: {
+              bubble: '#e7fed8',
+              bg: '#efeae2',
+              green: '#25d366',
+              dark: '#075e54',
             }
           },
           boxShadow: {
             'glow-purple': '0 10px 28px -4px rgba(124, 58, 237, 0.45)',
             'glow-purple-lg': '0 20px 40px -6px rgba(124, 58, 237, 0.6)',
-            'glow-amber': '0 10px 25px -4px rgba(245, 158, 11, 0.35)',
             'card-lift': '0 4px 6px -1px rgba(124, 58, 237, 0.04), 0 20px 35px -5px rgba(15, 23, 42, 0.08)',
-            'book-3d': '12px 16px 28px -4px rgba(15, 23, 42, 0.25), 0 2px 4px rgba(0,0,0,0.1)',
+            'book-3d': '10px 14px 25px -3px rgba(15, 23, 42, 0.3), 0 2px 4px rgba(0,0,0,0.1)',
           },
           animation: {
             'pulse-subtle': 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 4s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-6px)' },
-            }
           }
         }
       }
@@ -78,34 +76,26 @@
     .text-balance {
       text-wrap: balance;
     }
-    /* Hide scrollbar for carousel */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
     /* 3D Book Spine Effect */
-    .book-spine {
-      background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.15) 10%, rgba(255,255,255,0.1) 20%, transparent 100%);
+    .book-spine-glow {
+      box-shadow: inset 4px 0 8px rgba(255,255,255,0.25), inset -3px 0 6px rgba(0,0,0,0.4);
     }
   </style>
 </head>
 
 <body class="font-sans antialiased bg-surface-light text-slate-900 selection:bg-brand-500 selection:text-white">
 
-  <!-- ================= TOP URGENCY TICKER ================= -->
+  <!-- ================= TOP URGENCY TICKER CON VENTAS DE LAS ÚLTIMAS 24HS ================= -->
   <aside aria-label="Alerta de oferta" class="w-full bg-slate-950 text-white text-xs font-semibold py-2 px-3 text-center sticky top-0 z-50 border-b border-white/10 shadow-sm">
     <div class="max-w-5xl mx-auto flex items-center justify-center gap-2 flex-wrap sm:flex-nowrap">
       <span class="inline-flex items-center justify-center bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-black animate-pulse">
         ⚡ 39% OFF
       </span>
       <span class="text-slate-200 text-[11px] sm:text-xs">
-        Oferta exclusiva para dueños de negocios físicos: <strong class="text-amber-300">Ahorrás $348.000 ARS</strong> hoy
+        <strong id="sales-count-badge" class="text-amber-300">24 compras</strong> en las últimas 24hs • Ahorrás <strong>$348.000 ARS</strong> accediendo hoy
       </span>
       <span class="hidden md:inline text-white/40">•</span>
-      <span class="hidden md:inline text-emerald-400 font-bold text-[11px]">83% de cupos asignados</span>
+      <span class="hidden md:inline text-emerald-400 font-bold text-[11px]">Descarga Inmediata</span>
     </div>
   </aside>
 
@@ -136,7 +126,7 @@
   </header>
 
   <main>
-    <!-- ================= HERO SECTION (VISUAL, DIRECTO, VISCERAL) ================= -->
+    <!-- ================= HERO SECTION CON MOCKUP 3D PROTAGÓNICO ================= -->
     <section class="relative pt-6 sm:pt-10 pb-10 sm:pb-14 px-4 sm:px-6 overflow-hidden">
       <!-- Ambient Glow -->
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[650px] h-[320px] bg-brand-200/50 rounded-full blur-3xl pointer-events-none -z-10"></div>
@@ -155,111 +145,188 @@
         </h1>
 
         <!-- Subheadline Táctico -->
-        <p class="text-base sm:text-lg text-slate-600 font-medium mt-4 mb-5 max-w-2xl leading-snug text-balance">
-          Dejá de ser el bombero de tu propio mostrador. El ecosistema con <strong>8 productos tácticos</strong> para ordenar tu <strong>equipo</strong>, blindar tus <strong>márgenes</strong> y sistematizar tus <strong>procesos</strong> sin quemarte todos los días.
+        <p class="text-base sm:text-lg text-slate-600 font-medium mt-4 mb-4 max-w-2xl leading-snug text-balance">
+          Dejá de ser el bombero de tu propio mostrador. El kit con <strong>8 herramientas prácticas</strong> para ordenar tu <strong>equipo</strong>, blindar tus <strong>márgenes</strong> y sistematizar tus <strong>procesos</strong> sin quemarte todos los días.
         </p>
 
         <!-- Fast Scan Pill Highlights -->
-        <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-7">
+        <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-6">
           <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Liderazgo de Equipo</span>
           <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Control de Margen</span>
           <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Procesos & SOPs</span>
           <span class="bg-white border border-slate-200 text-slate-800 text-xs font-bold px-3 py-1 rounded-lg shadow-sm">✓ Ventas & Clientes</span>
         </div>
 
-        <!-- ================= BUNDLE VISUAL SHOWCASE (3D MOCKUP CLUSTER) ================= -->
-        <div class="w-full max-w-md my-2 p-4 bg-white/90 backdrop-blur-md rounded-3xl border border-brand-200/80 shadow-card-lift flex flex-col items-center relative overflow-hidden">
-          <!-- Ribbon Superior -->
-          <div class="w-full flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
-            <span class="font-extrabold text-slate-900 flex items-center gap-1">
-              <span class="text-amber-500">🎁</span> MEGA BUNDLE 8 EN 1
+        <!-- ================= HERO 3D DIGITAL BOXSET SHOWCASE (FOTOREALISTA & TANGIBLE) ================= -->
+        <div class="w-full max-w-lg my-2 p-5 bg-gradient-to-b from-white via-white to-slate-50 rounded-3xl border-2 border-brand-300 shadow-card-lift relative overflow-hidden">
+          
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
+            <span class="font-black text-slate-900 flex items-center gap-1.5">
+              <span class="text-amber-500 text-base">📦</span> COMBO PREMIUM 8 EN 1
             </span>
-            <span class="text-emerald-700 font-extrabold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-              AHORRÁS 39%
+            <span class="text-emerald-700 font-black bg-emerald-100 px-2.5 py-0.5 rounded-full text-[11px]">
+              VALOR $408.000+
             </span>
           </div>
 
-          <!-- Mini 3D Assets Row -->
-          <div class="grid grid-cols-4 gap-2 w-full my-3">
-            <!-- Book 1 -->
-            <div class="bg-gradient-to-b from-brand-700 to-brand-900 text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-brand-300 relative text-left">
-              <span class="text-[8px] font-black uppercase text-brand-300">EBOOK</span>
-              <span class="text-[10px] font-extrabold leading-tight mt-2">6 Mandatos</span>
-              <span class="text-[8px] text-white/70 mt-1">PDF</span>
+          <!-- Mockup 3D Bundle Cluster -->
+          <div class="py-5 px-2 flex items-center justify-center gap-2 sm:gap-3 perspective-1000">
+            
+            <!-- Book 1: Los 6 Mandatos -->
+            <div class="w-24 sm:w-28 h-36 sm:h-40 bg-gradient-to-br from-brand-700 via-brand-800 to-indigo-950 rounded-r-lg rounded-l-sm p-2 text-white shadow-book-3d border-l-4 border-brand-400 flex flex-col justify-between transform -rotate-3 hover:rotate-0 transition-transform book-spine-glow">
+              <div class="text-[8px] font-black uppercase tracking-wider text-brand-300 bg-black/30 px-1.5 py-0.5 rounded w-fit">EBOOK</div>
+              <div class="text-center my-auto">
+                <span class="text-[11px] sm:text-xs font-black block leading-tight">LOS 6 MANDATOS</span>
+                <span class="text-[8px] text-brand-200 block mt-0.5">Del Emprendedor</span>
+              </div>
+              <div class="text-[8px] text-right text-brand-300 font-bold">PDF • 120 págs</div>
             </div>
 
-            <!-- Book 2 -->
-            <div class="bg-gradient-to-b from-slate-900 to-black text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-red-400 relative text-left">
-              <span class="text-[8px] font-black uppercase text-red-400">EBOOK</span>
-              <span class="text-[10px] font-extrabold leading-tight mt-2">Precio de Liderar</span>
-              <span class="text-[8px] text-white/70 mt-1">PDF</span>
+            <!-- Book 2: El Precio de Liderar -->
+            <div class="w-24 sm:w-28 h-36 sm:h-40 bg-gradient-to-br from-slate-900 via-slate-950 to-black rounded-r-lg rounded-l-sm p-2 text-white shadow-book-3d border-l-4 border-red-500 flex flex-col justify-between transform rotate-2 hover:rotate-0 transition-transform book-spine-glow">
+              <div class="text-[8px] font-black uppercase tracking-wider text-red-400 bg-black/40 px-1.5 py-0.5 rounded w-fit">EBOOK</div>
+              <div class="text-center my-auto">
+                <span class="text-[11px] sm:text-xs font-black block leading-tight">EL PRECIO DE LIDERAR</span>
+                <span class="text-[8px] text-red-300 block mt-0.5">10 Verdades</span>
+              </div>
+              <div class="text-[8px] text-right text-red-400 font-bold">PDF • Táctico</div>
             </div>
 
-            <!-- Masterclass -->
-            <div class="bg-gradient-to-b from-amber-600 to-amber-800 text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-amber-300 relative text-left">
-              <span class="text-[8px] font-black uppercase text-amber-200">CLASE</span>
-              <span class="text-[10px] font-extrabold leading-tight mt-2">Negocios Físicos</span>
-              <span class="text-[8px] text-white/70 mt-1">+2 Horas</span>
+            <!-- Masterclass Box / Video Player Mockup -->
+            <div class="w-28 sm:w-32 h-36 sm:h-40 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-900 rounded-2xl p-2.5 text-white shadow-book-3d flex flex-col justify-between border border-amber-400/50 transform rotate-1 hover:rotate-0 transition-transform">
+              <div class="flex items-center justify-between">
+                <span class="text-[8px] font-black uppercase text-amber-200 bg-black/30 px-1.5 py-0.5 rounded">VIDEO HD</span>
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+              </div>
+              <div class="text-center my-auto flex flex-col items-center">
+                <div class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white mb-1 shadow-inner">
+                  ▶
+                </div>
+                <span class="text-[11px] font-black leading-tight">NEGOCIOS FÍSICOS</span>
+                <span class="text-[8px] text-amber-200">+2 Horas de Clase</span>
+              </div>
+              <div class="text-[8px] text-center text-amber-200 font-bold bg-black/20 rounded py-0.5">+ SOPs & Bonos</div>
             </div>
 
-            <!-- Tools & Bonuses -->
-            <div class="bg-gradient-to-b from-emerald-700 to-emerald-900 text-white rounded-xl p-2.5 flex flex-col justify-between shadow-book-3d border-l-2 border-emerald-300 relative text-left">
-              <span class="text-[8px] font-black uppercase text-emerald-300">KITS</span>
-              <span class="text-[10px] font-extrabold leading-tight mt-2">SOPs & Bonos</span>
-              <span class="text-[8px] text-white/70 mt-1">Plantillas</span>
-            </div>
           </div>
 
-          <!-- Total Value Contrast -->
-          <div class="w-full bg-slate-50 rounded-xl p-2.5 flex items-center justify-between text-xs mt-1">
-            <span class="text-slate-500 font-medium">Valor real por separado:</span>
-            <span class="text-red-500 font-extrabold line-through text-sm">$408.998 ARS</span>
+          <!-- Disproportionate Value Anchor Strip -->
+          <div class="w-full bg-slate-100/90 rounded-2xl p-3 flex items-center justify-between text-xs">
+            <span class="text-slate-600 font-semibold">Valor total acumulado:</span>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-red-500 font-black line-through text-sm">$408.998</span>
+              <span class="text-slate-400 font-bold text-xs">→ Hoy</span>
+              <span class="text-brand-700 font-black text-base">$59.999 ARS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= CUANTIFICACIÓN DEL DOLOR: EL COSTO DE NO TENER SISTEMAS ================= -->
+        <div class="w-full max-w-md bg-red-50/70 border border-red-200/90 rounded-2xl p-4 my-4 text-left">
+          <div class="flex items-center gap-2 text-red-800 font-black text-xs uppercase mb-2">
+            <span>⚠️</span> ¿CUÁNTO TE CUESTA NO TENER ESTOS SISTEMAS?
+          </div>
+          <ul class="space-y-1.5 text-xs text-slate-700">
+            <li class="flex items-start gap-1.5">
+              <span class="text-red-500 font-bold shrink-0">✕</span>
+              <span><strong>+$400.000 por mes</strong> en un empleado mal contratado que te renuncia en 30 días.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-red-500 font-bold shrink-0">✕</span>
+              <span><strong>+$200.000 por semana</strong> en mermas, desatención y costos fijos mal calculados.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-red-500 font-bold shrink-0">✕</span>
+              <span><strong>60 horas semanales</strong> de tu vida encerrado en el mostrador apagando incendios.</span>
+            </li>
+          </ul>
+          <div class="mt-2.5 pt-2 border-t border-red-200/60 text-xs font-extrabold text-slate-900">
+            El Pack cuesta <strong>$59.999 ARS una sola vez</strong>. Se paga solo evitando un solo error esta semana.
           </div>
         </div>
 
         <!-- Main Conversion Action Button -->
-        <div class="w-full max-w-md flex flex-col items-center gap-2.5 mt-4">
+        <div class="w-full max-w-md flex flex-col items-center gap-2 mt-1">
           <a href="#oferta" class="w-full py-4 px-6 bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-black text-base sm:text-lg rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 group">
-            <span>Quiero el Pack Completo — $59.999 ARS</span>
+            <span>Obtener el Pack Completo — $59.999 ARS</span>
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>
 
-          <!-- Trust microcopy directo sin garantía -->
-          <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-slate-500 font-medium pt-1">
+          <!-- Trust microcopy -->
+          <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-slate-500 font-medium">
             <span class="inline-flex items-center gap-1 text-emerald-700 font-bold">
               <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              Entrega Instantánea al Mail
+              Entrega Instantánea
             </span>
             <span>•</span>
             <span>Descarga Vitalicia</span>
             <span>•</span>
-            <span>Pago Seguro (Pesos o USD)</span>
-          </div>
-        </div>
-
-        <!-- 3 Pillars Stat Cards -->
-        <div class="mt-8 grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-lg text-center">
-          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div class="text-xl sm:text-2xl font-black text-brand-600">+50</div>
-            <div class="text-[11px] font-bold text-slate-700">Empresas Asesoradas</div>
-          </div>
-          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div class="text-xl sm:text-2xl font-black text-brand-600">4</div>
-            <div class="text-[11px] font-bold text-slate-700">Negocios Propios</div>
-          </div>
-          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div class="text-xl sm:text-2xl font-black text-emerald-600">8 en 1</div>
-            <div class="text-[11px] font-bold text-slate-700">Herramientas Listas</div>
+            <span>Pago Seguro en Pesos o USD</span>
           </div>
         </div>
 
       </div>
     </section>
 
+    <!-- ================= TEST INTERACTIVO: EL AUTODIAGNÓSTICO EN 10 SEGUNDOS ================= -->
+    <section class="py-8 sm:py-12 px-4 sm:px-6 bg-slate-900 text-white" id="autodiagnostico">
+      <div class="max-w-xl mx-auto">
+        <div class="text-center mb-6">
+          <span class="text-[10px] font-black uppercase tracking-widest text-brand-300 bg-brand-900/60 px-3 py-1 rounded-full border border-brand-500/30">
+            TEST DE 10 SEGUNDOS
+          </span>
+          <h2 class="text-xl sm:text-2xl font-black mt-2">
+            ¿Qué tan dependiente es tu negocio de vos?
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Tocá Sí o No en estas 3 preguntas y mirá tu resultado al instante.
+          </p>
+        </div>
+
+        <!-- 3 Questions Box -->
+        <div class="bg-slate-800/80 rounded-2xl p-4 sm:p-5 border border-slate-700 space-y-3.5" id="diagnostic-box">
+          
+          <!-- Q1 -->
+          <div class="flex items-center justify-between gap-3 text-xs sm:text-sm">
+            <span>1. ¿Tu negocio puede operar <strong>7 días sin que vos vayas</strong> ni atiendas el celular?</span>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button class="diag-btn px-2.5 py-1 rounded-lg border border-slate-600 text-xs font-bold hover:bg-slate-700" data-val="si">SÍ</button>
+              <button class="diag-btn active bg-red-600 text-white px-2.5 py-1 rounded-lg text-xs font-bold" data-val="no">NO</button>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="flex items-center justify-between gap-3 text-xs sm:text-sm pt-2.5 border-t border-slate-700/60">
+            <span>2. ¿Conocés con exactitud tu <strong>margen neto limpio</strong> descontando tu propio sueldo?</span>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button class="diag-btn px-2.5 py-1 rounded-lg border border-slate-600 text-xs font-bold hover:bg-slate-700" data-val="si">SÍ</button>
+              <button class="diag-btn active bg-red-600 text-white px-2.5 py-1 rounded-lg text-xs font-bold" data-val="no">NO</button>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="flex items-center justify-between gap-3 text-xs sm:text-sm pt-2.5 border-t border-slate-700/60">
+            <span>3. ¿Tenés un <strong>manual escrito</strong> para que un empleado nuevo no cometa errores?</span>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button class="diag-btn px-2.5 py-1 rounded-lg border border-slate-600 text-xs font-bold hover:bg-slate-700" data-val="si">SÍ</button>
+              <button class="diag-btn active bg-red-600 text-white px-2.5 py-1 rounded-lg text-xs font-bold" data-val="no">NO</button>
+            </div>
+          </div>
+
+          <!-- Result banner -->
+          <div id="diag-result" class="mt-4 p-3 rounded-xl bg-red-950/80 border border-red-700/60 text-xs text-red-200">
+            <strong class="text-white block mb-0.5">🚨 DIAGNÓSTICO: ZONA ROJA DE ESCLAVITUD OPERATIVA</strong>
+            Si respondiste NO a dos o más, compraste un empleo carísimo. El Pack Emprendedor te da exactamente los SOPs, filtros y estructura para salir de la trinchera.
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ================= ANTES VS DESPUÉS (DOLOR DIRECTO) ================= -->
-    <section class="py-8 sm:py-14 px-4 sm:px-6 bg-slate-50/80 border-y border-slate-200/60">
+    <section class="py-8 sm:py-14 px-4 sm:px-6 bg-slate-50/80 border-b border-slate-200/60">
       <div class="max-w-4xl mx-auto">
         <div class="text-center max-w-xl mx-auto mb-6 sm:mb-8">
           <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight">
@@ -366,197 +433,177 @@
       </div>
     </section>
 
-    <!-- ================= VALUE STACK (VALOR DESPROPORCIONADO) ================= -->
+    <!-- ================= VALUE STACK AGRUPADO EN LOS 3 PILARES DEL NEGOCIO ================= -->
     <section class="py-10 sm:py-16 px-4 sm:px-6 bg-slate-50/70 border-t border-slate-200/60" id="contenido">
-      <div class="max-w-5xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         
         <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
           <div class="inline-flex items-center gap-1.5 bg-red-100 text-red-700 text-xs font-black px-3.5 py-1 rounded-full uppercase mb-2">
             🔥 VALOR ACUMULADO: $408.998 ARS
           </div>
           <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Los 8 Productos que te llevás en el Combo
+            Los 3 Pilares que te llevás en el Pack
           </h2>
           <p class="text-xs sm:text-sm text-slate-600 mt-1">
-            Cada recurso resuelve un dolor exacto de tu negocio. Todo listo para descargar hoy.
+            8 herramientas divididas en las 3 áreas críticas que hacen rentable a cualquier negocio.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="space-y-6">
 
-          <!-- 1. Ebook Los 6 Mandatos -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-50 text-brand-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  📘 EBOOK EN PDF
-                </span>
-                <span class="text-xs text-slate-400 font-bold line-through">$35.000</span>
-              </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                Los 6 Mandatos del Emprendedor
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Las leyes inquebrantables para crear un negocio rentable que no dependa de modas. Cómo <strong>fijar precios</strong>, retener clientes y blindar tu margen.
-              </p>
+          <!-- PILAR 1: EQUIPO & LIDERAZGO -->
+          <div class="bg-white rounded-3xl border-2 border-brand-200 p-5 sm:p-7 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <span class="text-xs sm:text-sm font-black text-brand-700 uppercase tracking-wider flex items-center gap-2">
+                <span>👥</span> PILAR 1: EQUIPO & LIDERAZGO
+              </span>
+              <span class="text-xs font-bold text-slate-400">2 Recursos Clave</span>
             </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Lectura directa sin relleno</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Item 1: El Precio de Liderar -->
+              <div class="p-4 rounded-2xl bg-surface-light border border-slate-200/80 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-red-600 bg-red-50 px-2 py-0.5 rounded">EBOOK EN PDF</span>
+                    <span class="text-xs text-slate-400 line-through font-bold">$37.999</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm sm:text-base text-slate-900">El Precio de Liderar: 10 Verdades</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Cómo dar <strong>feedback que sirva</strong>, sostener estándares y <strong>despedir a tiempo</strong> sin culpa ni miedo.
+                  </p>
+                </div>
+                <span class="text-[11px] text-emerald-700 font-bold mt-3">✓ Incluido en el Combo</span>
+              </div>
+
+              <!-- Item 2: Kit Contratación -->
+              <div class="p-4 rounded-2xl bg-brand-50/60 border border-brand-200 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-brand-700 bg-brand-100 px-2 py-0.5 rounded">BONO EXCLUSIVO</span>
+                    <span class="text-xs text-red-500 line-through font-bold">$89.999</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm sm:text-base text-slate-900">Kit de Contratación & Entrevistas</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Preguntas filtro, perfiles de puesto y método de prueba de 7 días para <strong>sumar gente que cuide tu negocio</strong>.
+                  </p>
+                </div>
+                <span class="text-[11px] text-brand-700 font-black mt-3">¡100% GRATIS EN EL PACK!</span>
+              </div>
             </div>
           </div>
 
-          <!-- 2. Ebook El Precio de Liderar -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-50 text-brand-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  📕 EBOOK EN PDF
-                </span>
-                <span class="text-xs text-slate-400 font-bold line-through">$37.999</span>
-              </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                El Precio de Liderar: 10 Verdades Incómodas
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                ¿Quién dirige tu equipo cuando no estás mirando? Cómo dar <strong>feedback que sirva</strong>, sostener estándares y <strong>despedir a tiempo</strong> sin culpa.
-              </p>
+          <!-- PILAR 2: OPERACIÓN & PROCESOS -->
+          <div class="bg-white rounded-3xl border-2 border-amber-200 p-5 sm:p-7 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <span class="text-xs sm:text-sm font-black text-amber-800 uppercase tracking-wider flex items-center gap-2">
+                <span>⚙️</span> PILAR 2: OPERACIÓN & PROCESOS
+              </span>
+              <span class="text-xs font-bold text-slate-400">3 Recursos Clave</span>
             </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Ejercicios concretos de aplicación</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- Item 1: Masterclass Negocios Físicos -->
+              <div class="p-4 rounded-2xl bg-amber-50/50 border border-amber-200 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">VIDEO +2HS</span>
+                    <span class="text-xs text-slate-400 line-through font-bold">$55.000</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm text-slate-900">Masterclass Negocios Físicos</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Punto de equilibrio, <strong>costos de apertura</strong>, rotación de stock y margen del local.
+                  </p>
+                </div>
+                <span class="text-[11px] text-emerald-700 font-bold mt-3">✓ Incluido en el Combo</span>
+              </div>
+
+              <!-- Item 2: Generador SOPs -->
+              <div class="p-4 rounded-2xl bg-brand-50/60 border border-brand-200 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-brand-700 bg-brand-100 px-2 py-0.5 rounded">BONO EXCLUSIVO</span>
+                    <span class="text-xs text-red-500 line-through font-bold">$99.000</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm text-slate-900">Generador de Procesos (SOPs)</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Plantilla para documentar apertura, cierre y cobro en 15 minutos para que <strong>tu equipo opere solo</strong>.
+                  </p>
+                </div>
+                <span class="text-[11px] text-brand-700 font-black mt-3">¡100% GRATIS EN EL PACK!</span>
+              </div>
+
+              <!-- Item 3: Checklist Salud -->
+              <div class="p-4 rounded-2xl bg-surface-light border border-slate-200/80 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-slate-700 bg-slate-200 px-2 py-0.5 rounded">AUDITORÍA</span>
+                    <span class="text-xs text-slate-400 line-through font-bold">$25.000</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm text-slate-900">Checklist Salud del Negocio</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Diagnóstico de 15 min para frenar <strong>fugas de caja</strong> y cuellos de botella.
+                  </p>
+                </div>
+                <span class="text-[11px] text-emerald-700 font-bold mt-3">✓ Incluido en el Combo</span>
+              </div>
             </div>
           </div>
 
-          <!-- 3. Masterclass Negocios Físicos -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-amber-50 text-amber-800 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  🎥 VIDEO MASTERCLASS (+2 HORAS)
-                </span>
-                <span class="text-xs text-slate-400 font-bold line-through">$55.000</span>
-              </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                Estrategia & Operación de Negocios Físicos
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Trinchera pura: <strong>costos de apertura</strong>, rotación de stock, <strong>punto de equilibrio</strong> del local, control de caja y atención en el mostrador.
-              </p>
+          <!-- PILAR 3: MARGEN, VENTAS & AUTORIDAD -->
+          <div class="bg-white rounded-3xl border-2 border-emerald-200 p-5 sm:p-7 shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <span class="text-xs sm:text-sm font-black text-emerald-800 uppercase tracking-wider flex items-center gap-2">
+                <span>📈</span> PILAR 3: MARGEN, VENTAS & AUTORIDAD
+              </span>
+              <span class="text-xs font-bold text-slate-400">3 Recursos Clave</span>
             </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Grabación completa vitalicia</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
-            </div>
-          </div>
 
-          <!-- 4. Curso Marca Personal -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-50 text-brand-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  🎙️ CURSO EN VIDEO
-                </span>
-                <span class="text-xs text-slate-400 font-bold line-through">$45.000</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- Item 1: Los 6 Mandatos -->
+              <div class="p-4 rounded-2xl bg-surface-light border border-slate-200/80 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-brand-700 bg-brand-50 px-2 py-0.5 rounded">EBOOK EN PDF</span>
+                    <span class="text-xs text-slate-400 line-through font-bold">$35.000</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm text-slate-900">Los 6 Mandatos del Emprendedor</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Cómo fijar precios, retener clientes recurrentes y <strong>construir márgenes sólidos</strong>.
+                  </p>
+                </div>
+                <span class="text-[11px] text-emerald-700 font-bold mt-3">✓ Incluido en el Combo</span>
               </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                Marca Personal con Nicolás Genesir
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Cómo el dueño se convierte en el <strong>mayor imán de ventas</strong>. Posicionate como referente de confianza en tu ciudad para que no te regateen precio.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Módulos prácticos al grano</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
-            </div>
-          </div>
 
-          <!-- 5. Checklist Salud del Negocio -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-slate-100 text-slate-800 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  🚩 AUDITORÍA DE 15 MIN
-                </span>
-                <span class="text-xs text-slate-400 font-bold line-through">$25.000</span>
+              <!-- Item 2: Cliente Ideal -->
+              <div class="p-4 rounded-2xl bg-surface-light border border-slate-200/80 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-slate-700 bg-slate-200 px-2 py-0.5 rounded">MATRIZ</span>
+                    <span class="text-xs text-slate-400 line-through font-bold">$22.000</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm text-slate-900">Herramienta de Cliente Ideal</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Filtro comercial para <strong>atraer clientes que pagan bien</strong> y dejar de regatear.
+                  </p>
+                </div>
+                <span class="text-[11px] text-emerald-700 font-bold mt-3">✓ Incluido en el Combo</span>
               </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                Checklist de Salud del Negocio
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Auditoría rápida para detectar <strong>fugas de dinero</strong>, fallas operativas y mermas antes de que se conviertan en pérdidas irreparables.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Planilla lista para imprimir/usar</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
-            </div>
-          </div>
 
-          <!-- 6. Herramienta Cliente Ideal -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-brand-400 hover:shadow-md transition-all">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-slate-100 text-slate-800 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  💸 MATRIZ COMERCIAL
-                </span>
-                <span class="text-xs text-slate-400 font-bold line-through">$22.000</span>
+              <!-- Item 3: Marca Personal -->
+              <div class="p-4 rounded-2xl bg-surface-light border border-slate-200/80 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between gap-1 mb-1.5">
+                    <span class="text-[10px] font-black uppercase text-brand-700 bg-brand-50 px-2 py-0.5 rounded">CURSO EN VIDEO</span>
+                    <span class="text-xs text-slate-400 line-through font-bold">$45.000</span>
+                  </div>
+                  <h4 class="font-extrabold text-sm text-slate-900">Marca Personal con Nicolás Genesir</h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    El dueño como <strong>canal de ventas y confianza</strong> número uno de la empresa.
+                  </p>
+                </div>
+                <span class="text-[11px] text-emerald-700 font-bold mt-3">✓ Incluido en el Combo</span>
               </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                Herramienta de Cliente Ideal
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Dejá de quemar plata en publicidad ciega. Definí con exactitud al <strong>comprador de alto valor</strong> y filtrá al cliente que solo pide descuentos.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-              <span class="text-slate-500 font-medium">Plantilla de perfil comercial</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
-            </div>
-          </div>
-
-          <!-- 7. Bono 1 SOPs -->
-          <div class="bg-gradient-to-br from-brand-50 to-white p-5 rounded-2xl border-2 border-brand-300 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  🎁 BONO EXCLUSIVO #1
-                </span>
-                <span class="text-xs text-red-500 font-bold line-through">$99.000</span>
-              </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                Herramienta de Creación de Procesos (SOPs)
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Generador para documentar tareas en 15 minutos: apertura, atención, cobro y cierre para que tu <strong>equipo opere sin depender de vos</strong>.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-brand-100 flex items-center justify-between text-[11px]">
-              <span class="text-brand-700 font-black">¡100% GRATIS EN EL COMBO!</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
-            </div>
-          </div>
-
-          <!-- 8. Bono 2 Contratación -->
-          <div class="bg-gradient-to-br from-brand-50 to-white p-5 rounded-2xl border-2 border-brand-300 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="bg-brand-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase">
-                  🎁 BONO EXCLUSIVO #2
-                </span>
-                <span class="text-xs text-red-500 font-bold line-through">$89.999</span>
-              </div>
-              <h3 class="font-extrabold text-base text-slate-900">
-                Kit de Contratación & Entrevistas
-              </h3>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                Preguntas filtro, perfiles de puesto listos para publicar y método de prueba de 7 días para <strong>sumar colaboradores con ganas</strong>.
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-brand-100 flex items-center justify-between text-[11px]">
-              <span class="text-brand-700 font-black">¡100% GRATIS EN EL COMBO!</span>
-              <span class="text-emerald-700 font-bold">✓ Incluido</span>
             </div>
           </div>
 
@@ -565,119 +612,84 @@
       </div>
     </section>
 
-    <!-- ================= PRUEBA SOCIAL INTERACTIVA (CARRUSEL SWIPE / TOUCH) ================= -->
-    <section class="py-12 sm:py-16 px-4 sm:px-6 bg-white overflow-hidden" id="testimonios">
-      <div class="max-w-4xl mx-auto">
+    <!-- ================= PRUEBA SOCIAL: GALERÍA DE CHATS REALES DE WHATSAPP ================= -->
+    <section class="py-12 sm:py-16 px-4 sm:px-6 bg-slate-100/70 border-t border-slate-200/60" id="testimonios">
+      <div class="max-w-3xl mx-auto">
         
         <div class="text-center max-w-xl mx-auto mb-8">
-          <span class="text-xs font-black uppercase tracking-wider text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
-            Casos de Negocios Reales
+          <span class="text-xs font-black uppercase tracking-wider text-whatsapp-dark bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">
+            💬 CONVERSACIONES REALES
           </span>
           <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 tracking-tight">
-            Dueños que ya ordenaron su operación
+            Mensajes directos de dueños que lo aplicaron
           </h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
-            Gente con locales, empleados y comercios tradicionales que aplicó el sistema.
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            Gente con locales, empleados y comercios tradicionales que nos escribió por WhatsApp.
           </p>
         </div>
 
-        <!-- Carousel Container -->
-        <div class="relative">
+        <div class="space-y-4">
           
-          <!-- Slides Wrapper -->
-          <div id="carousel-track" class="flex transition-transform duration-300 ease-out cursor-grab select-none">
-            
-            <!-- Slide 1 -->
-            <div class="w-full shrink-0 px-2 sm:px-4">
-              <div class="bg-surface-light border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between h-full">
-                <div>
-                  <div class="flex items-center gap-1 text-amber-400 mb-3">
-                    <span>★★★★★</span>
-                    <span class="text-xs font-bold text-slate-400 ml-1">5.0</span>
-                  </div>
-                  <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed italic">
-                    "Estaba 14 horas adentro del local entre proveedores, pedidos y la caja. La Masterclass de negocios físicos y las plantillas de SOPs me abrieron los ojos: armé los manuales de apertura y cierre en 3 días. El mes pasado me tomé 4 días seguidos y el negocio facturó impecable sin mí."
-                  </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-200/80 flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full bg-brand-600 text-white font-black flex items-center justify-center text-sm shadow-sm">
-                    MR
-                  </div>
-                  <div class="flex flex-col text-left">
-                    <span class="font-extrabold text-sm text-slate-900">Martín Rossi</span>
-                    <span class="text-xs text-slate-500">Dueño de Hamburguesería & Bar (Córdoba)</span>
-                  </div>
-                </div>
+          <!-- Chat Bubble 1 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex items-start gap-3.5">
+            <div class="w-11 h-11 rounded-full bg-brand-700 text-white font-black flex items-center justify-center shrink-0 shadow-sm text-sm">
+              MR
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <span class="font-extrabold text-sm text-slate-900">Martín Rossi</span>
+                <span class="text-[11px] text-slate-400">Ayer, 19:42</span>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold mb-2">Hamburguesería & Bar (Córdoba)</div>
+              <div class="bg-whatsapp-bubble p-3 rounded-2xl rounded-tl-none border border-emerald-200/70 text-xs sm:text-sm text-slate-800 leading-relaxed shadow-sm">
+                "Nico hermano, te escribo porque apliqué los manuales de apertura y cierre de caja en el local. Me tomé 4 días seguidos la semana pasada para irme con mi familia y <strong>el local facturó impecable sin mí</strong>. Antes me iba una tarde y me explotaba el teléfono. La masterclass de negocios físicos vale 10 veces lo que pagué."
+              </div>
+              <div class="flex items-center justify-end gap-1 text-[11px] text-slate-400 mt-1">
+                <span>Leído</span>
+                <span class="text-blue-500 font-bold">✓✓</span>
               </div>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="w-full shrink-0 px-2 sm:px-4">
-              <div class="bg-surface-light border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between h-full">
-                <div>
-                  <div class="flex items-center gap-1 text-amber-400 mb-3">
-                    <span>★★★★★</span>
-                    <span class="text-xs font-bold text-slate-400 ml-1">5.0</span>
-                  </div>
-                  <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed italic">
-                    "El libro 'El Precio de Liderar' me dolió leerlo pero fue lo más sincero que encontré. Tenía una empleada tóxica que me pudría el ambiente y no me animaba a despedirla por miedo a no conseguir a nadie. El kit de contratación me dio el método para filtrar bien y hoy tengo un equipo que cuida el salón."
-                  </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-200/80 flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full bg-slate-900 text-white font-black flex items-center justify-center text-sm shadow-sm">
-                    VM
-                  </div>
-                  <div class="flex flex-col text-left">
-                    <span class="font-extrabold text-sm text-slate-900">Valeria Méndez</span>
-                    <span class="text-xs text-slate-500">Dueña de Centro de Estética & Uñas (Rosario)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="w-full shrink-0 px-2 sm:px-4">
-              <div class="bg-surface-light border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between h-full">
-                <div>
-                  <div class="flex items-center gap-1 text-amber-400 mb-3">
-                    <span>★★★★★</span>
-                    <span class="text-xs font-bold text-slate-400 ml-1">5.0</span>
-                  </div>
-                  <p class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed italic">
-                    "Apliqué el Checklist de Salud y me saltaron 3 fugas de costos fijos que no estaba computando en el precio de los repuestos. Recuperé el valor del pack en los primeros dos días simplemente corrigiendo la lista de precios."
-                  </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-200/80 flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full bg-brand-700 text-white font-black flex items-center justify-center text-sm shadow-sm">
-                    JP
-                  </div>
-                  <div class="flex flex-col text-left">
-                    <span class="font-extrabold text-sm text-slate-900">Julián Peralta</span>
-                    <span class="text-xs text-slate-500">Distribuidora & Taller de Repuestos (Bs. As.)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
 
-          <!-- Carousel Controls -->
-          <div class="flex items-center justify-between mt-6 px-2">
-            <!-- Dots -->
-            <div class="flex items-center gap-2" id="carousel-dots">
-              <button class="w-7 h-2 rounded-full bg-brand-600 transition-all dot-btn" aria-label="Slide 1"></button>
-              <button class="w-2 h-2 rounded-full bg-slate-300 transition-all dot-btn" aria-label="Slide 2"></button>
-              <button class="w-2 h-2 rounded-full bg-slate-300 transition-all dot-btn" aria-label="Slide 3"></button>
+          <!-- Chat Bubble 2 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex items-start gap-3.5">
+            <div class="w-11 h-11 rounded-full bg-slate-900 text-white font-black flex items-center justify-center shrink-0 shadow-sm text-sm">
+              VM
             </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <span class="font-extrabold text-sm text-slate-900">Valeria Méndez</span>
+                <span class="text-[11px] text-slate-400">Jueves, 11:15</span>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold mb-2">Salón de Uñas & Estética (Rosario)</div>
+              <div class="bg-whatsapp-bubble p-3 rounded-2xl rounded-tl-none border border-emerald-200/70 text-xs sm:text-sm text-slate-800 leading-relaxed shadow-sm">
+                "El libro <em>El Precio de Liderar</em> me dolió pero fue una trompada de realidad. Tenía una colaboradora que me pudría el clima del salón y no me animaba a despedirla por culpa. <strong>Usé el kit de contratación, abrí búsqueda con los filtros de la plantilla y en 5 días sumé a dos chicas que tienen un compromiso increíble</strong>. Me cambió la vida laboral."
+              </div>
+              <div class="flex items-center justify-end gap-1 text-[11px] text-slate-400 mt-1">
+                <span>Leído</span>
+                <span class="text-blue-500 font-bold">✓✓</span>
+              </div>
+            </div>
+          </div>
 
-            <!-- Arrows -->
-            <div class="flex items-center gap-2">
-              <button id="prev-btn" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center shadow-sm active:scale-95 transition-transform" aria-label="Anterior">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
-              </button>
-              <button id="next-btn" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center shadow-sm active:scale-95 transition-transform" aria-label="Siguiente">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-              </button>
+          <!-- Chat Bubble 3 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex items-start gap-3.5">
+            <div class="w-11 h-11 rounded-full bg-emerald-800 text-white font-black flex items-center justify-center shrink-0 shadow-sm text-sm">
+              JP
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <span class="font-extrabold text-sm text-slate-900">Julián Peralta</span>
+                <span class="text-[11px] text-slate-400">28 de Agosto, 16:03</span>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold mb-2">Distribuidora de Repuestos & Taller (Bs. As.)</div>
+              <div class="bg-whatsapp-bubble p-3 rounded-2xl rounded-tl-none border border-emerald-200/70 text-xs sm:text-sm text-slate-800 leading-relaxed shadow-sm">
+                "Nico, completé el Checklist de Salud en media hora y encontré <strong>$650.000 que se me estaban yendo por mes</strong> en costos fijos y mermas que no estaba computando en el precio al mostrador. Recuperé la inversión del pack el primer día."
+              </div>
+              <div class="flex items-center justify-end gap-1 text-[11px] text-slate-400 mt-1">
+                <span>Leído</span>
+                <span class="text-blue-500 font-bold">✓✓</span>
+              </div>
             </div>
           </div>
 
@@ -686,8 +698,8 @@
       </div>
     </section>
 
-    <!-- ================= CAJA DE OFERTA Y CIERRE QUIRÚRGICO ================= -->
-    <section class="py-12 sm:py-20 px-4 sm:px-6 bg-slate-50/80 relative" id="oferta">
+    <!-- ================= CAJA DE OFERTA CON SELECTOR DE MONEDA (UN SOLO BOTÓN) ================= -->
+    <section class="py-12 sm:py-20 px-4 sm:px-6 bg-white relative" id="oferta">
       <div class="max-w-lg mx-auto">
         
         <!-- Decision Card Container -->
@@ -701,37 +713,47 @@
           </div>
 
           <!-- Product Title -->
-          <div class="text-center mb-5">
+          <div class="text-center mb-4">
             <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               PACK EMPRENDEDOR PREMIUM
             </h3>
             <p class="text-xs text-slate-600 mt-0.5 font-medium">
-              Acceso inmediato y permanente a los 8 productos
+              Acceso inmediato y permanente a los 8 productos y herramientas
             </p>
           </div>
 
-          <!-- Price Anchor Display -->
-          <div class="bg-brand-50/60 border border-brand-200/80 rounded-2xl p-4 sm:p-5 mb-6 text-center">
+          <!-- Currency Toggle Switch -->
+          <div class="flex items-center justify-center p-1 bg-slate-100 rounded-xl mb-4 max-w-xs mx-auto border border-slate-200">
+            <button id="btn-curr-ars" class="flex-1 py-1.5 text-xs font-black rounded-lg transition-all bg-white text-brand-700 shadow-sm">
+              🇦🇷 Pesos ($59.999)
+            </button>
+            <button id="btn-curr-usd" class="flex-1 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-500 hover:text-slate-800">
+              🌎 USD (U$S 59)
+            </button>
+          </div>
+
+          <!-- Dynamic Price Anchor Display -->
+          <div class="bg-brand-50/60 border border-brand-200/80 rounded-2xl p-4 sm:p-5 mb-5 text-center">
             <div class="text-[11px] uppercase font-bold text-slate-500">
-              Valor por separado: <span class="line-through text-red-500 font-extrabold text-sm">$408.998 ARS</span>
+              Valor por separado: <span id="price-anchor" class="line-through text-red-500 font-extrabold text-sm">$408.998 ARS</span>
             </div>
             
-            <div class="flex items-center justify-center gap-2 my-1.5">
-              <span class="text-2xl font-extrabold text-slate-400 line-through">$97.999</span>
-              <span class="text-4xl sm:text-5xl font-black text-brand-600 tracking-tight">$59.999</span>
-              <span class="text-xs font-black text-slate-600">ARS</span>
+            <div class="flex items-center justify-center gap-2 my-1">
+              <span id="price-compare" class="text-2xl font-extrabold text-slate-400 line-through">$97.999</span>
+              <span id="price-hero" class="text-4xl sm:text-5xl font-black text-brand-600 tracking-tight">$59.999</span>
+              <span id="price-curr-label" class="text-xs font-black text-slate-600">ARS</span>
             </div>
             
-            <div class="text-xs font-bold text-slate-700">
-              o <span class="text-brand-700 font-extrabold text-base">U$S 59</span> desde fuera de Argentina
+            <div id="price-alt-text" class="text-xs font-bold text-slate-700">
+              Pagás en pesos con Mercado Pago o tarjetas
             </div>
-            <div class="text-[11px] text-slate-500 mt-1 font-medium">
-              Pago único • Sin cuotas mensuales • Archivos tuyos para siempre
+            <div class="text-[11px] text-slate-500 mt-0.5 font-medium">
+              Pago único • Sin suscripciones • Archivos tuyos para siempre
             </div>
           </div>
 
           <!-- Checklist de Cierre Rápido -->
-          <div class="space-y-2.5 mb-6 text-xs sm:text-sm text-slate-700 font-medium">
+          <div class="space-y-2 mb-6 text-xs sm:text-sm text-slate-700 font-medium">
             <div class="flex items-center gap-2">
               <span class="text-emerald-600 font-bold shrink-0">✓</span>
               <span><strong>Ebook:</strong> Los 6 Mandatos del Emprendedor (PDF)</span>
@@ -766,18 +788,11 @@
             </div>
           </div>
 
-          <!-- Dual Buy Buttons -->
-          <div class="flex flex-col gap-2.5">
-            <!-- Botón Pesos (Mercado Pago) -->
-            <a href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-5 bg-brand-600 hover:bg-brand-700 text-white font-black text-base sm:text-lg rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
-              <span>Comprar en Pesos — $59.999 ARS</span>
-              <span class="text-[11px] font-normal text-brand-100 mt-0.5">Mercado Pago • Tarjetas de Crédito/Débito • Pago Fácil / Rapipago</span>
-            </a>
-
-            <!-- Botón USD (PayPal) -->
-            <a href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=USD" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-5 bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200 font-bold text-sm rounded-xl transition-all flex flex-col items-center justify-center leading-tight text-center">
-              <span>Comprar en Dólares — U$S 59</span>
-              <span class="text-[10px] text-slate-500 mt-0.5">PayPal • Tarjetas Internacionales (Visa, Mastercard, Amex)</span>
+          <!-- UN SOLO BOTÓN MASIVO Y PULSANTE DE ALTA CONVERSIÓN -->
+          <div class="flex flex-col gap-2">
+            <a id="main-buy-button" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-5 bg-brand-600 hover:bg-brand-700 text-white font-black text-base sm:text-lg rounded-2xl shadow-glow-purple hover:shadow-glow-purple-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
+              <span id="main-buy-text">Comprar en Pesos — $59.999 ARS</span>
+              <span id="main-buy-sub" class="text-[11px] font-normal text-brand-100 mt-0.5">Mercado Pago • Tarjetas de Crédito/Débito • Pago Fácil / Rapipago</span>
             </a>
           </div>
 
@@ -795,7 +810,7 @@
             <span>•</span>
             <span class="inline-flex items-center gap-1 font-semibold text-slate-700">
               <svg class="w-3.5 h-3.5 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
-              Soporte de Acceso
+              Soporte Directo
             </span>
           </div>
 
@@ -805,19 +820,19 @@
     </section>
 
     <!-- ================= SEGURIDAD Y CONFIANZA ================= -->
-    <section class="py-8 sm:py-12 px-4 sm:px-6 bg-white">
+    <section class="py-8 sm:py-12 px-4 sm:px-6 bg-surface-light">
       <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-        <div class="bg-surface-light p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="text-2xl mb-1">⚡</div>
           <div class="font-extrabold text-xs sm:text-sm text-slate-900">Descarga Directa</div>
           <div class="text-[11px] text-slate-500 mt-0.5">Pagás y en 2 minutos ya tenés todos los archivos en tu mail.</div>
         </div>
-        <div class="bg-surface-light p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="text-2xl mb-1">🔒</div>
           <div class="font-extrabold text-xs sm:text-sm text-slate-900">Compra Blindada</div>
           <div class="text-[11px] text-slate-500 mt-0.5">Operación encriptada con pasarelas oficiales de Mercado Pago y PayPal.</div>
         </div>
-        <div class="bg-surface-light p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="text-2xl mb-1">💾</div>
           <div class="font-extrabold text-xs sm:text-sm text-slate-900">Tuyo Para Siempre</div>
           <div class="text-[11px] text-slate-500 mt-0.5">Guardás el material en tu compu o celular y lo consultás de por vida.</div>
@@ -905,12 +920,24 @@
     </section>
   </main>
 
+  <!-- ================= NOTIFICACIÓN TOAST FLOTANTE DE COMPRAS RECIENTES (EFECTO MANADA) ================= -->
+  <aside id="sales-toast" class="fixed bottom-20 sm:bottom-6 left-4 z-40 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-3 shadow-xl max-w-[310px] transform -translate-x-[120%] transition-transform duration-500 flex items-center gap-3 select-none" aria-live="polite">
+    <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-black text-sm">
+      ✓
+    </div>
+    <div class="flex-1 text-left">
+      <div class="text-xs font-black text-slate-900 leading-tight" id="toast-buyer">Mario J. (Córdoba)</div>
+      <div class="text-[11px] text-slate-500 font-medium" id="toast-text">Adquirió el Pack Emprendedor • hace 4 min</div>
+    </div>
+    <button id="toast-close" class="text-slate-400 hover:text-slate-600 text-xs p-1" aria-label="Cerrar notificación">✕</button>
+  </aside>
+
   <!-- ================= STICKY MOBILE CTA BAR ================= -->
   <aside id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 py-2.5 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transform translate-y-full transition-transform duration-300 md:hidden flex items-center justify-between gap-3" aria-label="Acceso rápido a oferta">
     <div class="flex flex-col">
       <span class="text-[10px] text-red-600 font-black uppercase tracking-wider">39% OFF • 8 EN 1</span>
       <div class="flex items-baseline gap-1.5">
-        <span class="text-lg font-black text-brand-700 leading-none">$59.999</span>
+        <span class="text-lg font-black text-brand-700 leading-none" id="sticky-price-display">$59.999</span>
         <span class="text-[11px] text-slate-400 line-through leading-none">$97.999</span>
       </div>
     </div>
@@ -937,7 +964,7 @@
     </div>
   </footer>
 
-  <!-- ================= SCRIPTS DE INTERACCIÓN & CARRUSEL ================= -->
+  <!-- ================= SCRIPTS DE INTERACCIÓN, CONVERSIÓN & TOAST ================= -->
   <script>
     // 1. FAQ Acordeón
     document.querySelectorAll('.faq-item').forEach(item => {
@@ -970,88 +997,150 @@
       }, { passive: true });
     }
 
-    // 3. Carousel Interactivo (Touch Swipe + Arrows + Dots + Autoplay)
-    const track = document.getElementById('carousel-track');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const dots = document.querySelectorAll('.dot-btn');
-    const totalSlides = 3;
-    let currentIndex = 0;
-    let startX = 0;
-    let isDragging = false;
-    let autoplayTimer = null;
+    // 3. Autodiagnóstico Interactivo (Test de 10 segundos)
+    const diagButtons = document.querySelectorAll('.diag-btn');
+    const diagResult = document.getElementById('diag-result');
+    
+    diagButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const parent = e.target.parentElement;
+        parent.querySelectorAll('.diag-btn').forEach(b => {
+          b.classList.remove('active', 'bg-red-600', 'bg-emerald-600', 'text-white');
+          b.classList.add('border', 'border-slate-600');
+        });
 
-    function updateCarousel() {
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      dots.forEach((dot, idx) => {
-        if (idx === currentIndex) {
-          dot.classList.add('w-7', 'bg-brand-600');
-          dot.classList.remove('w-2', 'bg-slate-300');
+        const val = e.target.getAttribute('data-val');
+        e.target.classList.add('active', 'text-white');
+        e.target.classList.remove('border', 'border-slate-600');
+        if (val === 'no') {
+          e.target.classList.add('bg-red-600');
         } else {
-          dot.classList.remove('w-7', 'bg-brand-600');
-          dot.classList.add('w-2', 'bg-slate-300');
+          e.target.classList.add('bg-emerald-600');
+        }
+
+        // Recalcular cuántos "NO" hay
+        const noCount = document.querySelectorAll('.diag-btn.active[data-val="no"]').length;
+        if (noCount >= 2) {
+          diagResult.className = "mt-4 p-3 rounded-xl bg-red-950/80 border border-red-700/60 text-xs text-red-200";
+          diagResult.innerHTML = '<strong class="text-white block mb-0.5">🚨 DIAGNÓSTICO: ZONA ROJA DE ESCLAVITUD OPERATIVA (' + noCount + '/3)</strong>Si no estás vos, tu negocio se frena. El Pack Emprendedor te da exactamente los SOPs, filtros y estructura para salir del mostrador.';
+        } else if (noCount === 1) {
+          diagResult.className = "mt-4 p-3 rounded-xl bg-amber-950/80 border border-amber-700/60 text-xs text-amber-200";
+          diagResult.innerHTML = '<strong class="text-white block mb-0.5">⚠️ DIAGNÓSTICO: ZONA DE RIESGO OPERATIVO (1/3)</strong>Tu negocio avanza pero tenés un cuello de botella que frena tu escala. El pack te da las herramientas exactas para destrabarlo.';
+        } else {
+          diagResult.className = "mt-4 p-3 rounded-xl bg-emerald-950/80 border border-emerald-700/60 text-xs text-emerald-200";
+          diagResult.innerHTML = '<strong class="text-white block mb-0.5">✨ DIAGNÓSTICO: LISTO PARA ESCALAR</strong>Tenés bases sólidas. El pack te va a permitir optimizar márgenes y liderazgo para abrir nuevas sucursales o líneas de negocio.';
         }
       });
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateCarousel();
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-    }
-
-    nextBtn.addEventListener('click', () => {
-      nextSlide();
-      resetAutoplay();
     });
 
-    prevBtn.addEventListener('click', () => {
-      prevSlide();
-      resetAutoplay();
+    // 4. Selector de Moneda Interactivo (ARS / USD)
+    const btnArs = document.getElementById('btn-curr-ars');
+    const btnUsd = document.getElementById('btn-curr-usd');
+    const priceHero = document.getElementById('price-hero');
+    const priceCompare = document.getElementById('price-compare');
+    const priceAnchor = document.getElementById('price-anchor');
+    const priceCurrLabel = document.getElementById('price-curr-label');
+    const priceAltText = document.getElementById('price-alt-text');
+    const mainBuyBtn = document.getElementById('main-buy-button');
+    const mainBuyText = document.getElementById('main-buy-text');
+    const mainBuySub = document.getElementById('main-buy-sub');
+    const stickyPrice = document.getElementById('sticky-price-display');
+
+    btnArs.addEventListener('click', () => {
+      btnArs.className = "flex-1 py-1.5 text-xs font-black rounded-lg transition-all bg-white text-brand-700 shadow-sm";
+      btnUsd.className = "flex-1 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-500 hover:text-slate-800";
+      priceHero.innerText = "$59.999";
+      priceCompare.innerText = "$97.999";
+      priceAnchor.innerText = "$408.998 ARS";
+      priceCurrLabel.innerText = "ARS";
+      priceAltText.innerText = "Pagás en pesos con Mercado Pago o tarjetas";
+      mainBuyText.innerText = "Comprar en Pesos — $59.999 ARS";
+      mainBuySub.innerText = "Mercado Pago • Tarjetas de Crédito/Débito • Pago Fácil / Rapipago";
+      mainBuyBtn.href = "https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS";
+      if (stickyPrice) stickyPrice.innerText = "$59.999";
     });
 
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        currentIndex = idx;
-        updateCarousel();
-        resetAutoplay();
+    btnUsd.addEventListener('click', () => {
+      btnUsd.className = "flex-1 py-1.5 text-xs font-black rounded-lg transition-all bg-white text-brand-700 shadow-sm";
+      btnArs.className = "flex-1 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-500 hover:text-slate-800";
+      priceHero.innerText = "U$S 59";
+      priceCompare.innerText = "U$S 97";
+      priceAnchor.innerText = "U$S 400 USD";
+      priceCurrLabel.innerText = "USD";
+      priceAltText.innerText = "Pagás en dólares internacionales con PayPal o tarjetas";
+      mainBuyText.innerText = "Comprar en Dólares — U$S 59 USD";
+      mainBuySub.innerText = "PayPal • Tarjetas Internacionales (Visa, Mastercard, Amex)";
+      mainBuyBtn.href = "https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=USD";
+      if (stickyPrice) stickyPrice.innerText = "U$S 59";
+    });
+
+    // 5. Contador Dinámico de Ventas en 24hs (Basado en la fecha, entre 18 y 29 para máxima verosimilitud)
+    const today = new Date();
+    const seed = today.getDate() + (today.getMonth() * 31);
+    const calculatedSales = 18 + (seed % 11); // Da entre 18 y 28 ventas diarias
+    const salesCountBadge = document.getElementById('sales-count-badge');
+    if (salesCountBadge) {
+      salesCountBadge.innerText = `${calculatedSales} compras`;
+    }
+
+    // 6. Notificaciones Flotantes de Compras Recientes (Toast Aleatorio No Repetitivo)
+    const salesToast = document.getElementById('sales-toast');
+    const toastBuyer = document.getElementById('toast-buyer');
+    const toastText = document.getElementById('toast-text');
+    const toastClose = document.getElementById('toast-close');
+    let toastDismissed = false;
+
+    const buyersPool = [
+      { name: "Mario J.", city: "Córdoba", time: "hace 4 min" },
+      { name: "Juan P.", city: "Buenos Aires", time: "hace 7 min" },
+      { name: "Esteban M.", city: "Rosario", time: "hace 11 min" },
+      { name: "Gonzalo B.", city: "Mendoza", time: "hace 16 min" },
+      { name: "Rodrigo S.", city: "Santa Fe", time: "hace 22 min" },
+      { name: "Ignacio F.", city: "Mar del Plata", time: "hace 27 min" },
+      { name: "Mariano L.", city: "Tucumán", time: "hace 33 min" },
+      { name: "Hernán D.", city: "Neuquén", time: "hace 39 min" },
+      { name: "Facundo C.", city: "Salta", time: "hace 45 min" },
+      { name: "Lucas R.", city: "La Plata", time: "hace 52 min" },
+      { name: "Matías T.", city: "San Juan", time: "hace 1 hora" },
+      { name: "Diego V.", city: "Corrientes", time: "hace 1 hora" }
+    ];
+    let buyerIndex = 0;
+
+    function showNextToast() {
+      if (toastDismissed || !salesToast) return;
+      
+      const current = buyersPool[buyerIndex % buyersPool.length];
+      buyerIndex++;
+
+      toastBuyer.innerText = `${current.name} (${current.city})`;
+      toastText.innerText = `Adquirió el Pack Emprendedor • ${current.time}`;
+
+      // Slide in
+      salesToast.classList.remove('-translate-x-[120%]');
+      salesToast.classList.add('translate-x-0');
+
+      // Slide out after 5.5 seconds
+      setTimeout(() => {
+        if (salesToast && !toastDismissed) {
+          salesToast.classList.remove('translate-x-0');
+          salesToast.classList.add('-translate-x-[120%]');
+        }
+      }, 5500);
+    }
+
+    if (toastClose) {
+      toastClose.addEventListener('click', () => {
+        toastDismissed = true;
+        salesToast.classList.remove('translate-x-0');
+        salesToast.classList.add('-translate-x-[120%]');
       });
-    });
-
-    // Touch & Drag events
-    track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    }, { passive: true });
-
-    track.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
-      if (diffX > 40) {
-        nextSlide();
-        resetAutoplay();
-      } else if (diffX < -40) {
-        prevSlide();
-        resetAutoplay();
-      }
-    });
-
-    function startAutoplay() {
-      autoplayTimer = setInterval(nextSlide, 5000);
     }
 
-    function resetAutoplay() {
-      clearInterval(autoplayTimer);
-      startAutoplay();
-    }
-
-    startAutoplay();
+    // Trigger toast after 4s, and repeat every 18s
+    setTimeout(() => {
+      showNextToast();
+      setInterval(showNextToast, 18000);
+    }, 4000);
   </script>
 
 </body>
