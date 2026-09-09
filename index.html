@@ -114,6 +114,9 @@
 
 <body class="font-sans antialiased bg-surface-light text-slate-900 selection:bg-brand-500 selection:text-white">
 
+  <!-- WRAPPER DE CONTENIDO DE LA LANDING (PARA EFECTO BLUR / DEPTH CUANDO ABRE EL UPSELL) -->
+  <div id="landing-page-root" class="transition-all duration-300 ease-out origin-center">
+
   <!-- ================= TOP URGENCY TICKER CON VENTAS DE LAS ÚLTIMAS 24HS ================= -->
   <aside aria-label="Alerta de oferta" class="w-full bg-slate-950 text-white text-xs font-semibold py-2 px-3 text-center sticky top-0 z-50 border-b border-white/10 shadow-sm">
     <div class="max-w-5xl mx-auto flex items-center justify-center gap-2 flex-wrap sm:flex-nowrap">
@@ -1181,203 +1184,220 @@
     </div>
   </footer>
 
+  </div> <!-- /#landing-page-root -->
+
   <!-- ================= MODAL UPSELL PRE-CHECKOUT (PLANILLA DE FINANZAS) ================= -->
-  <div id="upsell-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4 hidden transition-opacity duration-300" role="dialog" aria-modal="true">
-    <div class="glass-glow-purple text-white w-full max-w-[450px] rounded-3xl p-3 sm:p-4 flex flex-col relative overflow-hidden shadow-2xl border border-brand-500/40 transform transition-all duration-300 scale-95 opacity-0 no-scrollbar" id="upsell-modal-card">
+  <div id="upsell-modal" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xl flex items-center justify-center p-3 sm:p-4 hidden transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="glass-glow-purple text-white w-full max-w-[440px] md:max-w-3xl lg:max-w-4xl rounded-3xl p-3.5 sm:p-5 md:p-6 flex flex-col relative overflow-hidden shadow-2xl border border-brand-500/40 transform transition-all duration-300 scale-95 opacity-0 no-scrollbar" id="upsell-modal-card">
       
       <!-- Botón Cerrar Discreto (✕) -->
-      <button id="upsell-close-btn" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center font-bold text-xs transition-colors z-20" aria-label="Cerrar ventana">
+      <button id="upsell-close-btn" class="absolute top-2.5 right-2.5 md:top-4 md:right-4 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center font-bold text-xs md:text-sm transition-colors z-20" aria-label="Cerrar ventana">
         ✕
       </button>
 
-      <!-- Header: Urgencia + Badge Exclusivo -->
-      <div class="flex flex-col items-center text-center space-y-0.5 pb-0.5">
-        <div class="inline-flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 text-amber-300 px-2 py-0.5 rounded-full text-[9.5px] font-black uppercase tracking-wider animate-pulse">
+      <!-- Header: Urgencia + Badge Exclusivo (Común a Mobile y Desktop) -->
+      <div class="flex flex-col items-center text-center space-y-0.5 pb-1 md:pb-3">
+        <div class="inline-flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 text-amber-300 px-2.5 py-0.5 rounded-full text-[9.5px] sm:text-[10px] font-black uppercase tracking-wider animate-pulse">
           <span>⚡ OPORTUNIDAD ÚNICA PRE-CHECKOUT</span>
         </div>
 
         <!-- Temporizador Cuenta Regresiva 10 Minutos -->
-        <div class="flex items-center gap-1.5 text-[10.5px] text-brand-200 font-semibold">
+        <div class="flex items-center gap-1.5 text-[10.5px] sm:text-xs text-brand-200 font-semibold mt-0.5">
           <span>Esta oferta expira en:</span>
-          <span id="upsell-timer" class="font-mono font-black text-amber-300 bg-black/50 px-2 py-0.5 rounded-md border border-amber-300/40 text-xs tracking-wider shadow-inner">
+          <span id="upsell-timer" class="font-mono font-black text-amber-300 bg-black/50 px-2 py-0.5 rounded-md border border-amber-300/40 text-xs sm:text-sm tracking-wider shadow-inner">
             10:00
           </span>
         </div>
 
         <!-- Titular del Upsell -->
-        <h3 class="font-black text-base sm:text-xl text-white tracking-tight leading-tight mt-0.5 text-balance">
+        <h3 class="font-black text-base sm:text-xl md:text-2xl text-white tracking-tight leading-tight mt-0.5 text-balance">
           ¡Esperá! Sumá la <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-purple-200 to-emerald-300">Planilla de Finanzas</span> a tu orden
         </h3>
-        <p class="text-slate-300 text-[11px] sm:text-xs leading-tight whitespace-nowrap">
+        <p class="text-slate-300 text-[11px] sm:text-xs md:text-sm leading-tight whitespace-nowrap">
           La herramienta de finanzas para tu negocio.
         </p>
       </div>
 
-      <!-- MOCKUP 3D TIPO "MINI-VIDEO" CON 4 HOJAS EN VIVO Y MOVIMIENTO AUTOMÁTICO (SLIDER) -->
-      <div class="relative w-full my-1 flex flex-col items-center justify-center [perspective:1000px]">
+      <!-- CUERPO RESPONSIVE: 1 COLUMNA EN MOBILE, 2 COLUMNAS EN DESKTOP -->
+      <div class="grid grid-cols-1 md:grid-cols-12 md:gap-6 items-center w-full mt-1">
         
-        <!-- Tarjeta 3D Flotante con Pantalla Dinámica y Slider Horizontal Automático -->
-        <div class="animate-float-subtle w-full max-w-[340px] bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-brand-950/95 border border-brand-400/50 rounded-2xl p-2.5 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        <!-- COLUMNA IZQUIERDA: MOCKUP 3D SLIDER + 3 CARACTERÍSTICAS -->
+        <div class="md:col-span-6 flex flex-col items-center justify-center">
           
-          <!-- Brillo radial decorativo -->
-          <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-500/30 rounded-full blur-xl pointer-events-none"></div>
-
-          <!-- Barra superior del mock spreadsheet con nombre dinámico y barras indicadoras -->
-          <div class="flex items-center justify-between pb-1.5 border-b border-white/10 mb-1.5">
-            <div class="flex items-center gap-1.5">
-              <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-[10px] sm:text-[11px] font-black text-white tracking-tight" id="upsell-sheet-title">Hoja 1: Flujo Diario de Caja</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <!-- Indicadores de barra/puntos que se iluminan según la hoja activa -->
-              <div id="upsell-sheet-indicators" class="flex items-center gap-1">
-                <span class="upsell-dot w-4 h-1 rounded-full bg-emerald-400 transition-all duration-300"></span>
-                <span class="upsell-dot w-1.5 h-1 rounded-full bg-white/20 transition-all duration-300"></span>
-                <span class="upsell-dot w-1.5 h-1 rounded-full bg-white/20 transition-all duration-300"></span>
-                <span class="upsell-dot w-1.5 h-1 rounded-full bg-white/20 transition-all duration-300"></span>
-              </div>
-              <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[7.5px] font-black px-1.5 py-0.5 rounded-full uppercase">
-                Sheets
-              </span>
-            </div>
-          </div>
-
-          <!-- PISTA DE DESLIZAMIENTO HORIZONTAL AUTOMÁTICO (SLIDER) CADA 3.5s -->
-          <div class="overflow-hidden w-full rounded-xl bg-black/40 border border-white/10 p-1">
-            <div id="upsell-slider-track" class="flex transition-transform duration-700 ease-in-out w-full">
+          <!-- MOCKUP 3D TIPO "MINI-VIDEO" CON 4 HOJAS EN VIVO Y MOVIMIENTO AUTOMÁTICO (SLIDER) -->
+          <div class="relative w-full flex flex-col items-center justify-center [perspective:1000px]">
+            
+            <!-- Tarjeta 3D Flotante con Pantalla Dinámica y Slider Horizontal Automático -->
+            <div class="animate-float-subtle w-full max-w-[340px] md:max-w-[360px] bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-brand-950/95 border border-brand-400/50 rounded-2xl p-2.5 sm:p-3 shadow-2xl relative overflow-hidden backdrop-blur-md">
               
-              <!-- Hoja 1: Flujo de Caja -->
-              <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">💰 Cobros del Día</span>
-                  <span class="font-bold text-emerald-400">+$850.000</span>
+              <!-- Brillo radial decorativo -->
+              <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-500/30 rounded-full blur-xl pointer-events-none"></div>
+
+              <!-- Barra superior del mock spreadsheet con nombre dinámico y barras indicadoras -->
+              <div class="flex items-center justify-between pb-1.5 border-b border-white/10 mb-1.5">
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span class="text-[10px] sm:text-[11px] font-black text-white tracking-tight" id="upsell-sheet-title">Hoja 1: Flujo Diario de Caja</span>
                 </div>
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">📉 Pagos & Proveedores</span>
-                  <span class="font-bold text-rose-400">-$320.000</span>
-                </div>
-                <div class="flex items-center justify-between bg-brand-900/50 px-2 py-0.5 rounded-md border border-brand-500/40">
-                  <span class="text-brand-200 font-bold">🏦 Saldo Real en Caja</span>
-                  <span class="font-black text-amber-300">+$530.000 DISPONIBLE</span>
+                <div class="flex items-center gap-1.5">
+                  <!-- Indicadores de barra/puntos que se iluminan según la hoja activa -->
+                  <div id="upsell-sheet-indicators" class="flex items-center gap-1">
+                    <span class="upsell-dot w-4 h-1 rounded-full bg-emerald-400 transition-all duration-300"></span>
+                    <span class="upsell-dot w-1.5 h-1 rounded-full bg-white/20 transition-all duration-300"></span>
+                    <span class="upsell-dot w-1.5 h-1 rounded-full bg-white/20 transition-all duration-300"></span>
+                    <span class="upsell-dot w-1.5 h-1 rounded-full bg-white/20 transition-all duration-300"></span>
+                  </div>
+                  <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[7.5px] font-black px-1.5 py-0.5 rounded-full uppercase">
+                    Sheets
+                  </span>
                 </div>
               </div>
 
-              <!-- Hoja 2: Margen Limpio por Producto -->
-              <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">⭐ Producto Estrella</span>
-                  <span class="font-bold text-emerald-400">Margen 62% (+$7.500)</span>
-                </div>
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">⚠️ Fuga Oculta</span>
-                  <span class="font-bold text-rose-400">Margen 8% (Pérdida)</span>
-                </div>
-                <div class="flex items-center justify-between bg-brand-900/50 px-2 py-0.5 rounded-md border border-brand-500/40">
-                  <span class="text-brand-200 font-bold">🎯 Rentabilidad Neta</span>
-                  <span class="font-black text-amber-300">48.5% Ganancia Limpia</span>
+              <!-- PISTA DE DESLIZAMIENTO HORIZONTAL AUTOMÁTICO (SLIDER) CADA 3.5s -->
+              <div class="overflow-hidden w-full rounded-xl bg-black/40 border border-white/10 p-1">
+                <div id="upsell-slider-track" class="flex transition-transform duration-700 ease-in-out w-full">
+                  
+                  <!-- Hoja 1: Flujo de Caja -->
+                  <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">💰 Cobros del Día</span>
+                      <span class="font-bold text-emerald-400">+$850.000</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">📉 Pagos & Proveedores</span>
+                      <span class="font-bold text-rose-400">-$320.000</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-brand-900/50 px-2 py-0.5 rounded-md border border-brand-500/40">
+                      <span class="text-brand-200 font-bold">🏦 Saldo Real en Caja</span>
+                      <span class="font-black text-amber-300">+$530.000 DISPONIBLE</span>
+                    </div>
+                  </div>
+
+                  <!-- Hoja 2: Margen Limpio por Producto -->
+                  <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">⭐ Producto Estrella</span>
+                      <span class="font-bold text-emerald-400">Margen 62% (+$7.500)</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">⚠️ Fuga Oculta</span>
+                      <span class="font-bold text-rose-400">Margen 8% (Pérdida)</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-brand-900/50 px-2 py-0.5 rounded-md border border-brand-500/40">
+                      <span class="text-brand-200 font-bold">🎯 Rentabilidad Neta</span>
+                      <span class="font-black text-amber-300">48.5% Ganancia Limpia</span>
+                    </div>
+                  </div>
+
+                  <!-- Hoja 3: Punto de Equilibrio Diario -->
+                  <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">🏢 Costos Fijos Totales</span>
+                      <span class="font-bold text-slate-200">$1.850.000 / mes</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">⚖️ Meta Diaria Mínima</span>
+                      <span class="font-bold text-cyan-300">$61.600 / día sin perder</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-500/40">
+                      <span class="text-emerald-200 font-bold">✨ Estado Hoy</span>
+                      <span class="font-black text-emerald-400">135% (ZONA GANANCIA)</span>
+                    </div>
+                  </div>
+
+                  <!-- Hoja 4: Calendario de Vencimientos -->
+                  <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">📅 Próximos Pagos</span>
+                      <span class="font-bold text-slate-200">3 facturas a 7 días</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                      <span class="text-slate-300 font-medium">💵 Ahorro Pronto Pago</span>
+                      <span class="font-bold text-emerald-400">+$45.000 ahorrados</span>
+                    </div>
+                    <div class="flex items-center justify-between bg-brand-900/50 px-2 py-0.5 rounded-md border border-brand-500/40">
+                      <span class="text-brand-200 font-bold">🛡️ Alerta Vencimiento</span>
+                      <span class="font-black text-amber-300">0% Intereses por mora</span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
-              <!-- Hoja 3: Punto de Equilibrio Diario -->
-              <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">🏢 Costos Fijos Totales</span>
-                  <span class="font-bold text-slate-200">$1.850.000 / mes</span>
+              <!-- Mini Footer con estado de hojas -->
+              <div class="mt-1.5 pt-1 border-t border-white/10 flex items-center justify-between text-[8px] text-slate-400">
+                <div class="flex items-center gap-1">
+                  <span class="text-amber-300 font-bold">⚡ 4 Hojas Automatizadas</span>
+                  <span>• Fórmulas listas</span>
                 </div>
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">⚖️ Meta Diaria Mínima</span>
-                  <span class="font-bold text-cyan-300">$61.600 / día sin perder</span>
-                </div>
-                <div class="flex items-center justify-between bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-500/40">
-                  <span class="text-emerald-200 font-bold">✨ Estado Hoy</span>
-                  <span class="font-black text-emerald-400">135% (ZONA GANANCIA)</span>
+                <div class="flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span class="text-emerald-300 font-bold" id="upsell-tab-counter">1 de 4 • Auto-slide</span>
                 </div>
               </div>
+            </div>
 
-              <!-- Hoja 4: Calendario de Vencimientos -->
-              <div class="w-full shrink-0 px-1 py-0.5 space-y-1 text-[9px] sm:text-[10px]">
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">📅 Próximos Pagos</span>
-                  <span class="font-bold text-slate-200">3 facturas a 7 días</span>
-                </div>
-                <div class="flex items-center justify-between bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
-                  <span class="text-slate-300 font-medium">💵 Ahorro Pronto Pago</span>
-                  <span class="font-bold text-emerald-400">+$45.000 ahorrados</span>
-                </div>
-                <div class="flex items-center justify-between bg-brand-900/50 px-2 py-0.5 rounded-md border border-brand-500/40">
-                  <span class="text-brand-200 font-bold">🛡️ Alerta Vencimiento</span>
-                  <span class="font-black text-amber-300">0% Intereses por mora</span>
-                </div>
-              </div>
+          </div>
 
+          <!-- 3 CARACTERÍSTICAS CLAVE EN UNA SOLA LÍNEA (CERO RUIDO VISUAL) -->
+          <div class="grid grid-cols-3 gap-1.5 w-full my-1.5 md:mt-3 text-center">
+            <div class="bg-white/5 border border-white/10 rounded-lg py-1 px-1 flex items-center justify-center gap-1">
+              <span class="text-xs">🚨</span>
+              <span class="text-[9.5px] sm:text-[11px] font-bold text-slate-100 whitespace-nowrap">Frená Fugas</span>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-lg py-1 px-1 flex items-center justify-center gap-1">
+              <span class="text-xs">💰</span>
+              <span class="text-[9.5px] sm:text-[11px] font-bold text-slate-100 whitespace-nowrap">Margen Real</span>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-lg py-1 px-1 flex items-center justify-center gap-1">
+              <span class="text-xs">⚡</span>
+              <span class="text-[9.5px] sm:text-[11px] font-bold text-slate-100 whitespace-nowrap">100% Automática</span>
             </div>
           </div>
 
-          <!-- Mini Footer con estado de hojas -->
-          <div class="mt-1.5 pt-1 border-t border-white/10 flex items-center justify-between text-[8px] text-slate-400">
-            <div class="flex items-center gap-1">
-              <span class="text-amber-300 font-bold">⚡ 4 Hojas Automatizadas</span>
-              <span>• Fórmulas listas</span>
+        </div>
+
+        <!-- COLUMNA DERECHA: PRECIO Y BOTONES DE ACCIÓN (CTAs) -->
+        <div class="md:col-span-6 flex flex-col justify-center space-y-2 mt-1 md:mt-0">
+          
+          <!-- RECUADRO DE PRECIO Y DESCUENTO IRRECHAZABLE -->
+          <div class="bg-gradient-to-r from-purple-950/70 to-slate-900/85 border border-brand-500/50 rounded-xl p-2 sm:p-3 text-center">
+            <div class="text-[10px] sm:text-[11.5px] text-slate-300 font-medium">
+              Precio individual: <span class="line-through text-slate-400" id="upsell-sheet-original">$44.999 ARS</span>
+              <span class="mx-1">•</span>
+              <span class="text-amber-300 font-bold uppercase">En esta orden:</span> <span id="upsell-sheet-discount" class="text-white bg-brand-600 px-1.5 py-0.5 rounded font-bold text-[10px] sm:text-[11px]">$17.999 ARS</span>
             </div>
-            <div class="flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              <span class="text-emerald-300 font-bold" id="upsell-tab-counter">1 de 4 • Auto-slide</span>
+
+            <div class="mt-1 pt-1 border-t border-white/10 flex items-baseline justify-center gap-1.5">
+              <span class="text-[10.5px] sm:text-xs md:text-sm text-slate-300 font-semibold">Total Pack + Planilla:</span>
+              <span class="text-xl sm:text-2xl md:text-3xl font-black text-emerald-400 tracking-tight" id="upsell-total-price">$77.998</span>
+              <span class="text-xs sm:text-sm font-bold text-slate-300" id="upsell-total-curr">ARS</span>
             </div>
+            <p class="text-[8.5px] sm:text-[9.5px] text-slate-400 mt-0.5">Pago único • Acceso inmediato y vitalicio a todo</p>
           </div>
+
+          <!-- BOTONES DE ACCIÓN (CTAs) -->
+          <div class="space-y-1.5">
+            <!-- CTA Aceptar Oferta (Brillante, Verde Esmeralda Radiante con Efecto Glass & Gradient) -->
+            <a id="upsell-accept-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-planilla-de-finanzas?utm_source=meta&utm_medium=landing&utm_campaign=upsell_finanzas&currency=ARS" target="_blank" rel="noopener noreferrer" class="group relative w-full py-2.5 sm:py-3 px-3 rounded-xl bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 text-slate-950 font-black text-xs sm:text-sm md:text-base shadow-[0_4px_22px_rgba(52,211,153,0.45)] hover:shadow-[0_6px_28px_rgba(52,211,153,0.6)] border border-white/50 transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center overflow-hidden">
+              <!-- Brillo glass reflectivo superior -->
+              <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/35 to-transparent pointer-events-none"></div>
+              <span id="upsell-accept-text" class="relative z-10 font-black tracking-tight flex items-center justify-center gap-1 text-slate-950">
+                <span>¡SÍ! QUIERO LA OFERTA COMPLETA CON PLANILLA</span>
+                <span class="inline-block transition-transform group-hover:translate-x-0.5">⚡</span>
+              </span>
+              <span class="relative z-10 text-[9.5px] sm:text-[10.5px] font-bold text-slate-900/90 mt-0.5">Pack Emprendedor + Planilla — <span id="upsell-accept-price">$77.998 ARS</span></span>
+            </a>
+
+            <!-- CTA Rechazar Oferta (Botón secundario visible y claro para no perder ventas) -->
+            <a id="upsell-decline-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/20 hover:border-white/30 text-slate-300 hover:text-white text-[11px] sm:text-xs font-bold rounded-xl text-center transition-all flex items-center justify-center gap-1">
+              <span>No agregar planilla • Continuar solo con el Pack (<span id="upsell-decline-price">$59.999 ARS</span>)</span>
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </a>
+          </div>
+
         </div>
 
-      </div>
-
-      <!-- 3 CARACTERÍSTICAS CLAVE EN UNA SOLA LÍNEA (CERO RUIDO VISUAL) -->
-      <div class="grid grid-cols-3 gap-1.5 w-full my-1.5 text-center">
-        <div class="bg-white/5 border border-white/10 rounded-lg py-1 px-1 flex items-center justify-center gap-1">
-          <span class="text-xs">🚨</span>
-          <span class="text-[9.5px] sm:text-[11px] font-bold text-slate-100 whitespace-nowrap">Frená Fugas</span>
-        </div>
-        <div class="bg-white/5 border border-white/10 rounded-lg py-1 px-1 flex items-center justify-center gap-1">
-          <span class="text-xs">💰</span>
-          <span class="text-[9.5px] sm:text-[11px] font-bold text-slate-100 whitespace-nowrap">Margen Real</span>
-        </div>
-        <div class="bg-white/5 border border-white/10 rounded-lg py-1 px-1 flex items-center justify-center gap-1">
-          <span class="text-xs">⚡</span>
-          <span class="text-[9.5px] sm:text-[11px] font-bold text-slate-100 whitespace-nowrap">100% Automática</span>
-        </div>
-      </div>
-
-      <!-- RECUADRO DE PRECIO Y DESCUENTO IRRECHAZABLE -->
-      <div class="bg-gradient-to-r from-purple-950/70 to-slate-900/85 border border-brand-500/50 rounded-xl p-2 sm:p-2.5 my-1 text-center">
-        <div class="text-[10px] text-slate-300 font-medium">
-          Precio individual: <span class="line-through text-slate-400" id="upsell-sheet-original">$44.999 ARS</span>
-          <span class="mx-1">•</span>
-          <span class="text-amber-300 font-bold uppercase">En esta orden:</span> <span id="upsell-sheet-discount" class="text-white bg-brand-600 px-1.5 py-0.5 rounded font-bold text-[10px]">$17.999 ARS</span>
-        </div>
-
-        <div class="mt-1 pt-1 border-t border-white/10 flex items-baseline justify-center gap-1.5">
-          <span class="text-[10.5px] text-slate-300 font-semibold">Total Pack + Planilla:</span>
-          <span class="text-xl sm:text-2xl font-black text-emerald-400 tracking-tight" id="upsell-total-price">$77.998</span>
-          <span class="text-xs font-bold text-slate-300" id="upsell-total-curr">ARS</span>
-        </div>
-        <p class="text-[8.5px] text-slate-400 mt-0.5">Pago único • Acceso inmediato y vitalicio a todo</p>
-      </div>
-
-      <!-- BOTONES DE ACCIÓN (CTAs) -->
-      <div class="space-y-1.5 mt-1">
-        <!-- CTA Aceptar Oferta (Brillante, Verde Esmeralda Radiante con Efecto Glass & Gradient) -->
-        <a id="upsell-accept-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-planilla-de-finanzas?utm_source=meta&utm_medium=landing&utm_campaign=upsell_finanzas&currency=ARS" target="_blank" rel="noopener noreferrer" class="group relative w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 text-slate-950 font-black text-xs sm:text-sm shadow-[0_4px_22px_rgba(52,211,153,0.45)] hover:shadow-[0_6px_28px_rgba(52,211,153,0.6)] border border-white/50 transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center overflow-hidden">
-          <!-- Brillo glass reflectivo superior -->
-          <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/35 to-transparent pointer-events-none"></div>
-          <span id="upsell-accept-text" class="relative z-10 font-black tracking-tight flex items-center justify-center gap-1 text-slate-950">
-            <span>¡SÍ! QUIERO LA OFERTA COMPLETA CON PLANILLA</span>
-            <span class="inline-block transition-transform group-hover:translate-x-0.5">⚡</span>
-          </span>
-          <span class="relative z-10 text-[9.5px] sm:text-[10px] font-bold text-slate-900/90 mt-0.5">Pack Emprendedor + Planilla — <span id="upsell-accept-price">$77.998 ARS</span></span>
-        </a>
-
-        <!-- CTA Rechazar Oferta (Botón secundario visible y claro para no perder ventas) -->
-        <a id="upsell-decline-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/20 hover:border-white/30 text-slate-300 hover:text-white text-[11px] sm:text-xs font-bold rounded-xl text-center transition-all flex items-center justify-center gap-1">
-          <span>No agregar planilla • Continuar solo con el Pack (<span id="upsell-decline-price">$59.999 ARS</span>)</span>
-          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-        </a>
       </div>
 
     </div>
@@ -1727,7 +1747,13 @@
       });
     });
 
-    const closeModal = () => legalModal.classList.add('hidden');
+    const landingRoot = document.getElementById('landing-page-root');
+    const closeModal = () => {
+      legalModal.classList.add('hidden');
+      if (landingRoot && (!upsellModal || upsellModal.classList.contains('hidden'))) {
+        landingRoot.classList.remove('blur-[8px]', 'brightness-[0.7]', 'scale-[0.99]');
+      }
+    };
     if (legalModalClose) legalModalClose.addEventListener('click', closeModal);
     if (legalModalBtnOk) legalModalBtnOk.addEventListener('click', closeModal);
     if (legalModal) {
@@ -1764,6 +1790,12 @@
 
     function openUpsellModal() {
       if (!upsellModal) return;
+      if (landingRoot) {
+        landingRoot.classList.add('blur-[8px]', 'brightness-[0.7]', 'scale-[0.99]');
+      }
+      const salesToast = document.getElementById('sales-toast');
+      if (salesToast) salesToast.classList.add('hidden');
+
       upsellModal.classList.remove('hidden');
       setTimeout(() => {
         if (upsellCard) {
@@ -1779,6 +1811,12 @@
     function closeUpsellModal() {
       if (!upsellModal) return;
       stopSheetAutoplay();
+      if (landingRoot) {
+        landingRoot.classList.remove('blur-[8px]', 'brightness-[0.7]', 'scale-[0.99]');
+      }
+      const salesToast = document.getElementById('sales-toast');
+      if (salesToast) salesToast.classList.remove('hidden');
+
       if (upsellCard) {
         upsellCard.classList.remove('scale-100', 'opacity-100');
         upsellCard.classList.add('scale-95', 'opacity-0');
