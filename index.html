@@ -1172,121 +1172,121 @@
 
   <!-- ================= MODAL UPSELL PRE-CHECKOUT (PLANILLA DE FINANZAS) ================= -->
   <div id="upsell-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 hidden transition-opacity duration-300" role="dialog" aria-modal="true">
-    <div class="glass-glow-purple text-white w-full max-w-lg max-h-[92vh] rounded-3xl p-5 sm:p-7 flex flex-col relative overflow-y-auto shadow-2xl border border-brand-500/50 transform transition-all duration-300 scale-95 opacity-0" id="upsell-modal-card">
+    <div class="glass-glow-purple text-white w-full max-w-lg max-h-[95vh] rounded-3xl p-4 sm:p-6 flex flex-col relative overflow-y-auto shadow-2xl border border-brand-500/50 transform transition-all duration-300 scale-95 opacity-0" id="upsell-modal-card">
       
       <!-- Botón Cerrar Discreto (✕) -->
-      <button id="upsell-close-btn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center font-bold text-sm transition-colors z-20" aria-label="Cerrar ventana">
+      <button id="upsell-close-btn" class="absolute top-3.5 right-3.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center font-bold text-xs sm:text-sm transition-colors z-20" aria-label="Cerrar ventana">
         ✕
       </button>
 
       <!-- Header: Urgencia + Badge Exclusivo -->
-      <div class="flex flex-col items-center text-center space-y-1.5 pb-2">
-        <div class="inline-flex items-center gap-1.5 bg-amber-400/20 border border-amber-400/40 text-amber-300 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider animate-pulse">
+      <div class="flex flex-col items-center text-center space-y-1 pb-1">
+        <div class="inline-flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 text-amber-300 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider animate-pulse">
           <span>⚡ OPORTUNIDAD ÚNICA PRE-CHECKOUT</span>
         </div>
 
         <!-- Temporizador Cuenta Regresiva 10 Minutos -->
-        <div class="flex items-center gap-2 text-xs text-brand-200 font-semibold mt-1">
+        <div class="flex items-center gap-1.5 text-[11px] text-brand-200 font-semibold">
           <span>Esta oferta expira en:</span>
-          <span id="upsell-timer" class="font-mono font-black text-amber-300 bg-black/50 px-2.5 py-0.5 rounded-md border border-amber-300/40 text-sm tracking-wider shadow-inner">
+          <span id="upsell-timer" class="font-mono font-black text-amber-300 bg-black/50 px-2 py-0.5 rounded-md border border-amber-300/40 text-xs tracking-wider shadow-inner">
             10:00
           </span>
         </div>
 
         <!-- Titular del Upsell -->
-        <h3 class="font-black text-xl sm:text-2xl text-white tracking-tight leading-tight mt-2 text-balance">
+        <h3 class="font-black text-lg sm:text-2xl text-white tracking-tight leading-tight mt-1 text-balance">
           ¡Esperá! Sumá la <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-purple-200 to-emerald-300">Planilla de Finanzas</span> a tu orden
         </h3>
-        <p class="text-slate-300 text-xs sm:text-sm max-w-md leading-relaxed text-balance">
+        <p class="text-slate-300 text-[11px] sm:text-xs max-w-md leading-relaxed text-balance">
           El complemento exacto para registrar tus números, auditar flujo de caja y calcular márgenes reales automáticamente.
         </p>
       </div>
 
       <!-- MOCKUP 3D CON LEVE MOVIMIENTO FLOTANTE -->
-      <div class="relative w-full my-3 py-1 flex items-center justify-center [perspective:1000px]">
-        <div class="animate-float-subtle w-full max-w-[340px] bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-brand-950/90 border border-brand-400/50 rounded-2xl p-4 shadow-2xl relative overflow-hidden backdrop-blur-md">
+      <div class="relative w-full my-2 flex items-center justify-center [perspective:1000px]">
+        <div class="animate-float-subtle w-full max-w-[320px] bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-brand-950/90 border border-brand-400/50 rounded-xl p-3 shadow-2xl relative overflow-hidden backdrop-blur-md">
           
           <!-- Brillo radial decorativo -->
-          <div class="absolute -top-12 -right-12 w-28 h-28 bg-brand-500/25 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-500/25 rounded-full blur-xl pointer-events-none"></div>
 
           <!-- Barra superior del mock spreadsheet -->
-          <div class="flex items-center justify-between pb-2.5 border-b border-white/10 mb-2.5">
-            <div class="flex items-center gap-2">
-              <span class="text-emerald-400 text-base">📊</span>
-              <span class="text-xs font-black text-white tracking-tight">Planilla de Finanzas Pro</span>
+          <div class="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
+            <div class="flex items-center gap-1.5">
+              <span class="text-emerald-400 text-sm">📊</span>
+              <span class="text-[11px] font-black text-white tracking-tight">Planilla de Finanzas Pro</span>
             </div>
-            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[9px] font-black px-2 py-0.5 rounded-full uppercase">
+            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[8px] font-black px-1.5 py-0.5 rounded-full uppercase">
               Google Sheets
             </span>
           </div>
 
           <!-- Visual de métricas y filas de la planilla -->
-          <div class="space-y-1.5 text-[10px]">
-            <div class="flex items-center justify-between bg-black/40 px-2.5 py-1.5 rounded-lg border border-white/5">
+          <div class="space-y-1 text-[9.5px]">
+            <div class="flex items-center justify-between bg-black/40 px-2 py-1 rounded-md border border-white/5">
               <span class="text-slate-300 font-medium">💰 Ingresos Netos del Mes</span>
               <span class="font-bold text-emerald-400">+$2.840.500</span>
             </div>
-            <div class="flex items-center justify-between bg-black/40 px-2.5 py-1.5 rounded-lg border border-white/5">
+            <div class="flex items-center justify-between bg-black/40 px-2 py-1 rounded-md border border-white/5">
               <span class="text-slate-300 font-medium">📉 Costos Fijos & Variables</span>
               <span class="font-bold text-rose-400">-$1.420.000</span>
             </div>
-            <div class="flex items-center justify-between bg-brand-900/40 px-2.5 py-1.5 rounded-lg border border-brand-500/30">
+            <div class="flex items-center justify-between bg-brand-900/40 px-2 py-1 rounded-md border border-brand-500/30">
               <span class="text-brand-200 font-bold">🎯 Margen Limpio Real</span>
               <span class="font-black text-amber-300">50.0% ($1.420.500)</span>
             </div>
           </div>
 
           <!-- Mini Footer del Mockup -->
-          <div class="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[9px] text-slate-400">
-            <span>⚡ Fórmulas 100% automatizadas</span>
+          <div class="mt-2 pt-1.5 border-t border-white/10 flex items-center justify-between text-[8.5px] text-slate-400">
+            <span>⚡ Fórmulas automatizadas</span>
             <span class="text-amber-300 font-bold">Sin saber contabilidad</span>
           </div>
         </div>
       </div>
 
       <!-- BULLETS LLAMATIVOS Y CORTOS -->
-      <div class="space-y-2 my-2 text-xs text-slate-200">
-        <div class="flex items-start gap-2">
+      <div class="space-y-1.5 my-1.5 text-[11px] sm:text-xs text-slate-200">
+        <div class="flex items-start gap-1.5">
           <span class="text-emerald-400 font-bold shrink-0">✓</span>
-          <span><strong>Control de Flujo de Caja:</strong> Registrá cobros, pagos diarios y sabé exactamente cuánta plata real queda en tu cuenta.</span>
+          <span><strong>Control de Flujo de Caja:</strong> Registrá cobros, pagos diarios y sabé cuánta plata real queda en tu cuenta.</span>
         </div>
-        <div class="flex items-start gap-2">
+        <div class="flex items-start gap-1.5">
           <span class="text-emerald-400 font-bold shrink-0">✓</span>
-          <span><strong>Cálculo Automático de Margen:</strong> Descubrí qué productos te dejan ganancia real y cuáles te hacen perder plata sin que lo notes.</span>
+          <span><strong>Cálculo Automático de Margen:</strong> Descubrí qué productos te dejan ganancia real y cuáles te hacen perder plata.</span>
         </div>
-        <div class="flex items-start gap-2">
+        <div class="flex items-start gap-1.5">
           <span class="text-emerald-400 font-bold shrink-0">✓</span>
-          <span><strong>Cero fórmulas complejas:</strong> Lista para duplicar en tu Google Sheets en 1 clic y usar desde la PC o el celular.</span>
+          <span><strong>Cero fórmulas complejas:</strong> Duplicá la plantilla en Google Sheets en 1 clic y usala desde la PC o el celular.</span>
         </div>
       </div>
 
       <!-- RECUADRO DE PRECIO Y DESCUENTO IRRECHAZABLE -->
-      <div class="bg-gradient-to-r from-purple-950/70 to-slate-900/85 border border-brand-500/50 rounded-2xl p-3 sm:p-4 my-2 text-center">
-        <div class="text-[11px] text-slate-300 font-medium">
-          Precio normal de la planilla sola: <span class="line-through text-slate-400" id="upsell-sheet-original">$44.999 ARS</span>
+      <div class="bg-gradient-to-r from-purple-950/70 to-slate-900/85 border border-brand-500/50 rounded-xl p-2.5 sm:p-3 my-1.5 text-center">
+        <div class="text-[10.5px] text-slate-300 font-medium">
+          Precio normal de la planilla: <span class="line-through text-slate-400" id="upsell-sheet-original">$44.999 ARS</span>
         </div>
-        <div class="text-xs text-amber-300 font-black uppercase tracking-wide mt-0.5">
-          ⚡ Oferta especial en este pedido: solo <span id="upsell-sheet-discount" class="text-white bg-brand-600 px-1.5 py-0.5 rounded font-bold">$17.999 ARS</span> (60% OFF)
+        <div class="text-[11px] text-amber-300 font-black uppercase tracking-wide mt-0.5">
+          ⚡ En este pedido: solo <span id="upsell-sheet-discount" class="text-white bg-brand-600 px-1.5 py-0.5 rounded font-bold">$17.999 ARS</span> (60% OFF)
         </div>
 
-        <div class="mt-2 pt-2 border-t border-white/10 flex items-baseline justify-center gap-2">
-          <span class="text-xs text-slate-300 font-semibold">Total Pack + Planilla:</span>
+        <div class="mt-1.5 pt-1.5 border-t border-white/10 flex items-baseline justify-center gap-1.5">
+          <span class="text-[11px] text-slate-300 font-semibold">Total Pack + Planilla:</span>
           <span class="text-2xl sm:text-3xl font-black text-emerald-400 tracking-tight" id="upsell-total-price">$77.998</span>
           <span class="text-xs font-bold text-slate-300" id="upsell-total-curr">ARS</span>
         </div>
-        <p class="text-[10px] text-slate-400 mt-1">Pago único • Acceso inmediato y vitalicio a todo</p>
+        <p class="text-[9.5px] text-slate-400 mt-0.5">Pago único • Acceso inmediato y vitalicio a todo</p>
       </div>
 
       <!-- BOTONES DE ACCIÓN (CTAs) -->
-      <div class="space-y-2.5 mt-2">
+      <div class="space-y-1.5 mt-1.5">
         <!-- CTA Aceptar Oferta -->
-        <a id="upsell-accept-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-planilla-de-finanzas?utm_source=meta&utm_medium=landing&utm_campaign=upsell_finanzas&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-sm sm:text-base rounded-xl shadow-lg shadow-emerald-500/25 transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
+        <a id="upsell-accept-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-planilla-de-finanzas?utm_source=meta&utm_medium=landing&utm_campaign=upsell_finanzas&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-emerald-500/25 transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
           <span id="upsell-accept-text">¡SÍ! QUIERO LA OFERTA COMPLETA CON PLANILLA</span>
-          <span class="text-[11px] font-bold text-slate-900/80 mt-0.5">Pack Emprendedor + Planilla — <span id="upsell-accept-price">$77.998 ARS</span></span>
+          <span class="text-[10px] sm:text-[11px] font-bold text-slate-900/80 mt-0.5">Pack Emprendedor + Planilla — <span id="upsell-accept-price">$77.998 ARS</span></span>
         </a>
 
         <!-- CTA Rechazar Oferta -->
-        <a id="upsell-decline-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 text-slate-400 hover:text-slate-200 text-xs font-semibold text-center transition-colors block underline-offset-2 hover:underline">
+        <a id="upsell-decline-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-1.5 px-2 text-slate-400 hover:text-slate-200 text-[10.5px] sm:text-xs font-semibold text-center transition-colors block underline-offset-2 hover:underline">
           No quiero aprovechar la oferta • Continuar solo con el Pack (<span id="upsell-decline-price">$59.999 ARS</span>)
         </a>
       </div>
