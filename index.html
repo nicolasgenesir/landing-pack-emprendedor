@@ -1171,22 +1171,22 @@
   </footer>
 
   <!-- ================= MODAL UPSELL PRE-CHECKOUT (PLANILLA DE FINANZAS) ================= -->
-  <div id="upsell-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 hidden transition-opacity duration-300" role="dialog" aria-modal="true">
-    <div class="glass-glow-purple text-white w-full max-w-lg max-h-[96vh] rounded-3xl p-3.5 sm:p-5 flex flex-col relative overflow-y-auto shadow-2xl border border-brand-500/50 transform transition-all duration-300 scale-95 opacity-0" id="upsell-modal-card">
+  <div id="upsell-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4 hidden transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="glass-glow-purple text-white w-full max-w-lg max-h-[98vh] rounded-3xl p-3 sm:p-4.5 flex flex-col relative overflow-y-auto shadow-2xl border border-brand-500/50 transform transition-all duration-300 scale-95 opacity-0" id="upsell-modal-card">
       
       <!-- Botón Cerrar Discreto (✕) -->
-      <button id="upsell-close-btn" class="absolute top-3 right-3 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center font-bold text-xs sm:text-sm transition-colors z-20" aria-label="Cerrar ventana">
+      <button id="upsell-close-btn" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center font-bold text-xs transition-colors z-20" aria-label="Cerrar ventana">
         ✕
       </button>
 
       <!-- Header: Urgencia + Badge Exclusivo -->
-      <div class="flex flex-col items-center text-center space-y-1 pb-1">
-        <div class="inline-flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 text-amber-300 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider animate-pulse">
+      <div class="flex flex-col items-center text-center space-y-0.5 pb-0.5">
+        <div class="inline-flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 text-amber-300 px-2 py-0.5 rounded-full text-[9.5px] font-black uppercase tracking-wider animate-pulse">
           <span>⚡ OPORTUNIDAD ÚNICA PRE-CHECKOUT</span>
         </div>
 
         <!-- Temporizador Cuenta Regresiva 10 Minutos -->
-        <div class="flex items-center gap-1.5 text-[11px] text-brand-200 font-semibold">
+        <div class="flex items-center gap-1.5 text-[10.5px] text-brand-200 font-semibold">
           <span>Esta oferta expira en:</span>
           <span id="upsell-timer" class="font-mono font-black text-amber-300 bg-black/50 px-2 py-0.5 rounded-md border border-amber-300/40 text-xs tracking-wider shadow-inner">
             10:00
@@ -1194,63 +1194,63 @@
         </div>
 
         <!-- Titular del Upsell -->
-        <h3 class="font-black text-lg sm:text-2xl text-white tracking-tight leading-tight mt-1 text-balance">
+        <h3 class="font-black text-base sm:text-xl text-white tracking-tight leading-tight mt-0.5 text-balance">
           ¡Esperá! Sumá la <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-purple-200 to-emerald-300">Planilla de Finanzas</span> a tu orden
         </h3>
-        <p class="text-slate-300 text-[11px] sm:text-xs max-w-md leading-relaxed text-balance">
-          El sistema completo de 4 herramientas en Google Sheets para no fundir tu negocio por no saber tus números.
+        <p class="text-slate-300 text-[10px] sm:text-xs max-w-md leading-tight text-balance">
+          El sistema completo de 4 herramientas en Google Sheets para controlar tus números.
         </p>
       </div>
 
       <!-- MOCKUP 3D TIPO "MINI-VIDEO" CON 4 HOJAS EN VIVO Y MOVIMIENTO -->
-      <div class="relative w-full my-1.5 flex flex-col items-center justify-center [perspective:1000px]">
+      <div class="relative w-full my-1 flex flex-col items-center justify-center [perspective:1000px]">
         
         <!-- Pestañas del mini-video (Tabs Google Sheets) -->
-        <div class="flex items-center justify-center gap-1 mb-1.5 w-full max-w-[340px] px-0.5 overflow-x-auto no-scrollbar">
-          <button type="button" class="upsell-tab-btn active px-2 py-1 rounded-md text-[9px] font-bold transition-all bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1 shrink-0" data-tab="0">
+        <div class="flex items-center justify-center gap-1 mb-1 w-full max-w-[340px] px-0.5 overflow-x-auto no-scrollbar">
+          <button type="button" class="upsell-tab-btn active px-1.5 py-0.5 rounded-md text-[8.5px] font-bold transition-all bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1 shrink-0" data-tab="0">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>1. Flujo Caja</span>
           </button>
-          <button type="button" class="upsell-tab-btn px-2 py-1 rounded-md text-[9px] font-bold transition-all bg-white/5 text-slate-400 border border-white/10 hover:text-white flex items-center gap-1 shrink-0" data-tab="1">
+          <button type="button" class="upsell-tab-btn px-1.5 py-0.5 rounded-md text-[8.5px] font-bold transition-all bg-white/5 text-slate-400 border border-white/10 hover:text-white flex items-center gap-1 shrink-0" data-tab="1">
             <span>2. Margen Real</span>
           </button>
-          <button type="button" class="upsell-tab-btn px-2 py-1 rounded-md text-[9px] font-bold transition-all bg-white/5 text-slate-400 border border-white/10 hover:text-white flex items-center gap-1 shrink-0" data-tab="2">
+          <button type="button" class="upsell-tab-btn px-1.5 py-0.5 rounded-md text-[8.5px] font-bold transition-all bg-white/5 text-slate-400 border border-white/10 hover:text-white flex items-center gap-1 shrink-0" data-tab="2">
             <span>3. Pto. Equilibrio</span>
           </button>
-          <button type="button" class="upsell-tab-btn px-2 py-1 rounded-md text-[9px] font-bold transition-all bg-white/5 text-slate-400 border border-white/10 hover:text-white flex items-center gap-1 shrink-0" data-tab="3">
+          <button type="button" class="upsell-tab-btn px-1.5 py-0.5 rounded-md text-[8.5px] font-bold transition-all bg-white/5 text-slate-400 border border-white/10 hover:text-white flex items-center gap-1 shrink-0" data-tab="3">
             <span>4. Vencimientos</span>
           </button>
         </div>
 
         <!-- Tarjeta 3D Flotante con Pantalla Dinámica -->
-        <div class="animate-float-subtle w-full max-w-[340px] bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-brand-950/95 border border-brand-400/50 rounded-xl p-3 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        <div class="animate-float-subtle w-full max-w-[335px] bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-brand-950/95 border border-brand-400/50 rounded-xl p-2.5 shadow-2xl relative overflow-hidden backdrop-blur-md">
           
           <!-- Brillo radial decorativo -->
           <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-500/30 rounded-full blur-xl pointer-events-none"></div>
 
           <!-- Barra superior del mock spreadsheet con badge de grabación/demo en vivo -->
-          <div class="flex items-center justify-between pb-1.5 border-b border-white/10 mb-2">
-            <div class="flex items-center gap-1.5">
-              <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-              <span class="text-[10.5px] font-black text-white tracking-tight" id="upsell-sheet-title">Hoja 1: Flujo Diario de Caja</span>
+          <div class="flex items-center justify-between pb-1 border-b border-white/10 mb-1.5">
+            <div class="flex items-center gap-1">
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
+              <span class="text-[10px] font-black text-white tracking-tight" id="upsell-sheet-title">Hoja 1: Flujo Diario de Caja</span>
             </div>
-            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[8px] font-black px-1.5 py-0.5 rounded-full uppercase">
+            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[7.5px] font-black px-1.5 py-0.5 rounded-full uppercase">
               Google Sheets
             </span>
           </div>
 
           <!-- Contenido dinámico de las 4 hojas -->
-          <div id="upsell-tab-content" class="min-h-[66px] flex flex-col justify-center transition-opacity duration-200">
-            <div class="space-y-1 text-[9.5px]">
-              <div class="flex items-center justify-between bg-black/40 px-2 py-1 rounded-md border border-white/5">
+          <div id="upsell-tab-content" class="min-h-[58px] flex flex-col justify-center transition-opacity duration-200">
+            <div class="space-y-0.5 text-[9px]">
+              <div class="flex items-center justify-between bg-black/40 px-2 py-0.5 rounded-md border border-white/5">
                 <span class="text-slate-300 font-medium">💰 Cobros del Día</span>
                 <span class="font-bold text-emerald-400">+$850.000</span>
               </div>
-              <div class="flex items-center justify-between bg-black/40 px-2 py-1 rounded-md border border-white/5">
+              <div class="flex items-center justify-between bg-black/40 px-2 py-0.5 rounded-md border border-white/5">
                 <span class="text-slate-300 font-medium">📉 Pagos & Proveedores</span>
                 <span class="font-bold text-rose-400">-$320.000</span>
               </div>
-              <div class="flex items-center justify-between bg-brand-900/50 px-2 py-1 rounded-md border border-brand-500/40">
+              <div class="flex items-center justify-between bg-brand-900/50 px-2 py-0.5 rounded-md border border-brand-500/40">
                 <span class="text-brand-200 font-bold">🏦 Saldo Real en Caja</span>
                 <span class="font-black text-amber-300">+$530.000 DISPONIBLE</span>
               </div>
@@ -1258,7 +1258,7 @@
           </div>
 
           <!-- Mini Footer con estado de hojas -->
-          <div class="mt-2 pt-1.5 border-t border-white/10 flex items-center justify-between text-[8.5px] text-slate-400">
+          <div class="mt-1.5 pt-1 border-t border-white/10 flex items-center justify-between text-[8px] text-slate-400">
             <div class="flex items-center gap-1">
               <span class="text-amber-300 font-bold">⚡ 4 Hojas Automatizadas</span>
               <span>• Fórmulas listas</span>
@@ -1273,48 +1273,48 @@
       </div>
 
       <!-- 3 BULLETS DE DOLOR EMOCIONAL Y RÁPIDA DECISIÓN -->
-      <div class="space-y-1.5 my-1.5 text-[11px] sm:text-xs text-slate-200">
-        <div class="flex items-start gap-2 bg-red-950/40 border border-red-800/40 p-2 rounded-xl">
-          <span class="text-sm shrink-0">🚨</span>
-          <span class="leading-snug"><strong class="text-white">Basta de "vender pero no ver la plata":</strong> Identificá al instante en qué fuga invisible se te está yendo el margen.</span>
+      <div class="space-y-1 my-1 text-[10.5px] sm:text-xs text-slate-200">
+        <div class="flex items-start gap-1.5 bg-red-950/40 border border-red-800/40 px-2 py-1.5 rounded-xl">
+          <span class="text-xs shrink-0 mt-0.5">🚨</span>
+          <span class="leading-snug"><strong class="text-white">Basta de "vender pero no ver la plata":</strong> Detectá en qué fuga invisible se te va el margen.</span>
         </div>
-        <div class="flex items-start gap-2 bg-purple-950/40 border border-purple-800/40 p-2 rounded-xl">
-          <span class="text-sm shrink-0">💸</span>
-          <span class="leading-snug"><strong class="text-white">Evitá retirar creyendo que es ganancia:</strong> El error #1 que descapitaliza y funde comercios sin que el dueño lo note.</span>
+        <div class="flex items-start gap-1.5 bg-purple-950/40 border border-purple-800/40 px-2 py-1.5 rounded-xl">
+          <span class="text-xs shrink-0 mt-0.5">💸</span>
+          <span class="leading-snug"><strong class="text-white">Evitá retirar creyendo que es ganancia:</strong> El error #1 que descapitaliza y funde comercios.</span>
         </div>
-        <div class="flex items-start gap-2 bg-emerald-950/40 border border-emerald-800/40 p-2 rounded-xl">
-          <span class="text-sm shrink-0">⚡</span>
-          <span class="leading-snug"><strong class="text-white">100% Automática en Google Sheets:</strong> Cargás ventas y gastos; el sistema calcula márgenes y caja solo (cero fórmulas).</span>
+        <div class="flex items-start gap-1.5 bg-emerald-950/40 border border-emerald-800/40 px-2 py-1.5 rounded-xl">
+          <span class="text-xs shrink-0 mt-0.5">⚡</span>
+          <span class="leading-snug"><strong class="text-white">100% Automática en Google Sheets:</strong> Cargás ventas y gastos; calcula márgenes y caja sola.</span>
         </div>
       </div>
 
       <!-- RECUADRO DE PRECIO Y DESCUENTO IRRECHAZABLE -->
-      <div class="bg-gradient-to-r from-purple-950/70 to-slate-900/85 border border-brand-500/50 rounded-xl p-2.5 sm:p-3 my-1 text-center">
-        <div class="text-[10.5px] text-slate-300 font-medium">
+      <div class="bg-gradient-to-r from-purple-950/70 to-slate-900/85 border border-brand-500/50 rounded-xl p-2 sm:p-2.5 my-1 text-center">
+        <div class="text-[10px] text-slate-300 font-medium">
           Precio individual de la planilla: <span class="line-through text-slate-400" id="upsell-sheet-original">$44.999 ARS</span>
         </div>
-        <div class="text-[11px] text-amber-300 font-black uppercase tracking-wide mt-0.5">
+        <div class="text-[10.5px] text-amber-300 font-black uppercase tracking-wide mt-0.5">
           ⚡ En este pedido: solo <span id="upsell-sheet-discount" class="text-white bg-brand-600 px-1.5 py-0.5 rounded font-bold">$17.999 ARS</span> (60% OFF)
         </div>
 
-        <div class="mt-1.5 pt-1.5 border-t border-white/10 flex items-baseline justify-center gap-1.5">
-          <span class="text-[11px] text-slate-300 font-semibold">Total Pack + Planilla:</span>
-          <span class="text-2xl sm:text-3xl font-black text-emerald-400 tracking-tight" id="upsell-total-price">$77.998</span>
+        <div class="mt-1 pt-1 border-t border-white/10 flex items-baseline justify-center gap-1.5">
+          <span class="text-[10.5px] text-slate-300 font-semibold">Total Pack + Planilla:</span>
+          <span class="text-xl sm:text-2xl font-black text-emerald-400 tracking-tight" id="upsell-total-price">$77.998</span>
           <span class="text-xs font-bold text-slate-300" id="upsell-total-curr">ARS</span>
         </div>
-        <p class="text-[9.5px] text-slate-400 mt-0.5">Pago único • Acceso inmediato y vitalicio a todo</p>
+        <p class="text-[9px] text-slate-400 mt-0.5">Pago único • Acceso inmediato y vitalicio a todo</p>
       </div>
 
       <!-- BOTONES DE ACCIÓN (CTAs) -->
-      <div class="space-y-2 mt-1.5">
+      <div class="space-y-1.5 mt-1">
         <!-- CTA Aceptar Oferta (Grande, verde esmeralda y brillante) -->
-        <a id="upsell-accept-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-planilla-de-finanzas?utm_source=meta&utm_medium=landing&utm_campaign=upsell_finanzas&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-emerald-500/30 transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
+        <a id="upsell-accept-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-planilla-de-finanzas?utm_source=meta&utm_medium=landing&utm_campaign=upsell_finanzas&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-emerald-500/30 transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center leading-tight text-center">
           <span id="upsell-accept-text">¡SÍ! QUIERO LA OFERTA COMPLETA CON PLANILLA</span>
-          <span class="text-[10.5px] font-bold text-slate-900/80 mt-0.5">Pack Emprendedor + Planilla — <span id="upsell-accept-price">$77.998 ARS</span></span>
+          <span class="text-[10px] font-bold text-slate-900/80 mt-0.5">Pack Emprendedor + Planilla — <span id="upsell-accept-price">$77.998 ARS</span></span>
         </a>
 
         <!-- CTA Rechazar Oferta (Botón secundario visible y claro para no perder ventas) -->
-        <a id="upsell-decline-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/20 hover:border-white/30 text-slate-300 hover:text-white text-xs font-bold rounded-xl text-center transition-all flex items-center justify-center gap-1.5">
+        <a id="upsell-decline-btn" href="https://nicolasgenesir.tiendup.com/p/pack-emprendedor-premium?utm_source=meta&utm_medium=landing&utm_campaign=pack_premium&currency=ARS" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/20 hover:border-white/30 text-slate-300 hover:text-white text-[11px] sm:text-xs font-bold rounded-xl text-center transition-all flex items-center justify-center gap-1.5">
           <span>No agregar planilla • Continuar solo con el Pack (<span id="upsell-decline-price">$59.999 ARS</span>)</span>
           <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
         </a>
